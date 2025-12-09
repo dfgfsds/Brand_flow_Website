@@ -23,7 +23,7 @@ export default function CategoriesPage() {
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
                     {categories?.data?.map((category: any) => (
                         <Link
-                            href={`/categories/${slugConvert(category?.name)}`}
+                            href={`/categories/${(category?.slug_name)}`}
                             key={category?.id}
                             className="relative group overflow-hidden rounded-md shadow hover:shadow-lg transition"
                         >

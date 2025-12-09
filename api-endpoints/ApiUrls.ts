@@ -40,6 +40,9 @@ const wishlist = `${baseUrl}/api/wishlist/`;
 const sendSmsOtpUser = `${baseUrl}/send-sms-opt-user/`;
 const otpVerify = `${baseUrl}/verify-sms-opt-return-user/`;
 const reviews = `${baseUrl}/reviews/`;
+const paymentDeliveryPartner=`${baseUrl}/vendor-site-payment-delivery-partner-details/`;
+const cartCalculateTotal=`${baseUrl}/cart/calculate-total/`;
+const removeCoupon = `${baseUrl}/cart/`;
 
 export default {
   cartCreate,
@@ -80,5 +83,8 @@ export default {
   wishlist,
   sendSmsOtpUser,
   otpVerify,
-  reviews
+  reviews,
+  paymentDeliveryPartner,
+  cartCalculateTotal,
+  removeCoupon,
 };
