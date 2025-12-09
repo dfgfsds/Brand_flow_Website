@@ -236,7 +236,7 @@ interface Props {
 const QuickSearch: React.FC<Props> = ({ products, label = 'Search...', defaultOpen = false }) => {
     const [isOpen, setIsOpen] = useState(defaultOpen);
     const [query, setQuery] = useState('');
-    const [results, setResults] = useState<{ products: Product[]; related: Product[] }>({
+    const [results, setResults] = useState<{ products: any[]; related: any[] }>({
         products: [],
         related: [],
     });
@@ -369,20 +369,20 @@ const QuickSearch: React.FC<Props> = ({ products, label = 'Search...', defaultOp
                     className="absolute left-0 right-0 z-50 bg-white border border-gray-200 shadow-lg mt-2 rounded-lg max-h-[400px] overflow-y-auto text-sm animate-in fade-in slide-in-from-top-2"
                     role="listbox"
                 >
-                    {results.products.length > 0 ? (
+                    {results?.products?.length > 0 ? (
                         <>
                             <p className="px-4 py-2 font-semibold text-gray-600 border-b bg-gray-50">
                                 Products
                             </p>
 
-                            {results.products.map((item, i) => (
+                            {results?.products.map((item, i) => (
                                 <div
                                     key={i}
                                     onClick={() => {
                                         setShowDropdown(false);
                                         setQuery('');
                                         setIsOpen(false);
-                                        router.push(`/shop/${slugConvert(item?.name)}`);
+                                        router.push(`/shop/${(item?.slug_name)}`);
                                     }}
                                     className="flex gap-3 px-4 py-2 hover:bg-gray-100 cursor-pointer transition-colors"
                                     role="option"

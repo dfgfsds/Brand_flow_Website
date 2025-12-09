@@ -53,16 +53,6 @@ export default function CartPage() {
       <div className="container mx-auto px-4 py-12">
         <h1 className="text-3xl font-bold mb-8">Your Cart</h1>
         {cartItem?.length === 0 ? (
-          // <div className="flex flex-col items-center justify-center h-64">
-          //   <ShoppingBag className="h-16 w-16 text-gray-400 mb-4" />
-          //   <p className="text-gray-600">Your cart is empty</p>
-          //   <Link href="/products" className="mt-4 text-[#4D8B31] hover:underline flex">
-          //     Start Shopping 
-          //     <ArrowRight className="ml-2 h-4 w-4 my-auto" />
-
-          //   </Link>
-          // </div>
-
           <div className="flex flex-col items-center justify-center h-max  text-gray-800 animate-fadeIn">
             <div className="text-6xl text-gray-400 animate-float">
               <ShoppingBag className="h-16 w-16 text-blue-900 mb-4" />
@@ -89,7 +79,7 @@ export default function CartPage() {
                 <div className="p-6">
                   <div className="flex justify-between items-center mb-6">
                     <h2 className="text-xl font-semibold">Cart Items {cartItem?.length}</h2>
-                    <Link href="/shop" className="text-[#a5291b] font-bold hover:underline text-sm flex items-center">
+                    <Link href="/shop" className="text-blue-500 font-bold hover:underline text-sm flex items-center">
                       Continue Shopping
                       <ArrowRight className="ml-1 h-4 w-4" />
                     </Link>

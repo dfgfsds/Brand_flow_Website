@@ -1,8 +1,20 @@
 'use client';
 
-import { Phone } from 'lucide-react';
+import { getVendorDeliveryDetailsApi } from '@/api-endpoints/authendication';
+import { useVendor } from '@/context/VendorContext';
+import { useQuery } from '@tanstack/react-query';
+import { Mail, Phone } from 'lucide-react';
 
 const ContactUs = () => {
+        const { vendorId } = useVendor();
+
+    const getVendorDeliveryDetailsData: any = useQuery({
+        queryKey: ['getVendorDeliveryDetailsData', vendorId],
+        queryFn: () => getVendorDeliveryDetailsApi(`${vendorId}`),
+        enabled: !!vendorId
+    })
+
+        const data = getVendorDeliveryDetailsData?.data?.data?.vendor_other_details;
     return (
         <section>
             <div className="container mx-auto px-4 py-12" />
@@ -36,12 +48,23 @@ const ContactUs = () => {
                             <h3 className="text-lg font-bold text-gray-900 mb-2">
                                 CUSTOMER SERVICE
                             </h3>
-                            <div className="flex items-start gap-3 text-sm text-gray-700">
+                               <div className="flex items-start gap-3 text-sm text-gray-700">
                                 <Phone className="text-indigo-600 mt-1" />
                                 <div>
-                                    <p className="text-gray-400">+91 7094256929</p>
+                                    {data?.support_contact &&(
+                                    <p className="text-gray-400">{data?.support_contact}</p>
+                                    )}
+                                   
                                     {/* <p>Monday to Saturday</p> */}
                                     {/* <p>10 am – 6:30 pm (Chennai)</p> */}
+                                </div>
+                            </div>
+                              <div className="flex items-start mt-2 gap-3 text-sm text-gray-700">
+                                <Mail className="text-indigo-600 mt-1" />
+                                <div>
+                                    {data?.support_email &&(
+                                    <p className="text-gray-400">{data?.support_email}</p>
+                                    )}
                                 </div>
                             </div>
                         </div>

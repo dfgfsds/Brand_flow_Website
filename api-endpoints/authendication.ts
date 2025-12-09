@@ -77,3 +77,11 @@ export const postSendSmsOtpUserApi = async (payload:any) => {
 export const postVerifySmsOtpApi = async (payload:any) => {
   return axios.post(ApiUrls.otpVerify,payload);
 } 
+
+// GET getPaymentDeliveryPartnerApi API
+export const getPaymentDeliveryPartnerApi = async (query: any) => {
+  const formattedQuery = query.endsWith('/') ? query : `${query}`;
+  return axios.get(
+      `${ApiUrls.paymentDeliveryPartner}${formattedQuery}`
+  );
+}

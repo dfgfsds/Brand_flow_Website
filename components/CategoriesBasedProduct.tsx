@@ -45,26 +45,27 @@ export default function CategoriesBasedProduct() {
         setCartId(storedCartId);
         setUserName(storedUserName);
     }, []);
-    
-useEffect(() => {
-  if (id && /^\d+$/.test(id.toString())) {
-    // id is all numbers → redirect
-    router.replace("/categories"); // 👈 change this to your desired page
-  }
-}, [id, router]);
+
+    useEffect(() => {
+        if (id && /^\d+$/.test(id.toString())) {
+            router.replace("/categories");
+        }
+    }, [id, router]);
 
 
     // Find the category name by ID
     const category = categories?.data?.find(
-        (cat: any) => slugConvert(cat.name) === id
+        (cat: any) => cat?.slug_name === id
     );
+
     const categoryName = category?.name || 'Category';
 
     // Filter products by category ID
     const filteredProducts = products?.data?.filter(
-        (product: any) => slugConvert(product.category_name) === id
+        (product: any) => product?.category === category?.id
     );
 
+    console.log('Filtered Products:', filteredProducts);
     // Keep only products with status === true (robust normalization)
     const activeProducts = filteredProducts?.filter((p: any) => {
         const s = p?.status;
@@ -109,66 +110,111 @@ useEffect(() => {
                 <ArrowLeft onClick={() => router.back()} className='text-gray-400 cursor-pointer' />
                 <div className="text-md text-gray-400 flex mt-0.5 gap-1">
                     <span>
-                        Home</span><span className='cursor-pointer flex' onClick={() => router.back()}>/ {categoryName}</span>  <span className='text-blue-900'>/ Shop</span></div>
+                        Home</span><span className='cursor-pointer flex' onClick={() => router.back()}>/ {categoryName}</span>  <span className='text-blue-500'>/ Shop</span></div>
             </div>
-            {/* <img
-                src={category?.banner_image ?? img.src}
-                alt="banner image"
-                className="w-full h-32 md:h-80 px-2 md:m-2 rounded-md"
-            /> */}
-            <h1 className='m-2 font-bold text-2xl text-center text-blue-900'>
-                {categoryName}
-            </h1>
-            <div className='m-2'>
-                <div className='quill-content' dangerouslySetInnerHTML={{ __html: category?.description2 }} />
-            </div>
-            <h1 className="text-3xl font-bold  text-blue-900 mb-6 mt-6 text-center">
-                {categoryName} Products
-            </h1>
-            {isLoading ? (
-                <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-6">
-                    {[...Array(6)].map((_, idx) => (
-                        <div key={idx} className="px-2">
-                            <ProductCardSkeleton />
-                        </div>
-                    ))}
+
+            {category?.subcategories?.length > 0 && (
+                <div>
+                    <div className="text-center my-6">
+                        <h2 className="text-2xl text-gray-700 font-bold capitalize">{category?.name} SubCategories</h2>
+                        <div className="w-20 h-1 bg-blue-500 mx-auto mt-2 rounded"></div>
+                    </div>
+
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                        {category?.subcategories.map((sub: any) => (
+                            <div
+                                key={sub.id}
+                                onClick={() => router.push(`/categories/${id}/${sub?.slug_name}`)}
+                                className="relative w-full aspect-square rounded-lg overflow-hidden cursor-pointer group shadow-md hover:shadow-xl transition"
+                            >
+
+                                <img
+                                    src={sub?.image}
+                                    alt={sub?.name}
+                                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                                />
+
+
+                                <div className="absolute bottom-0 w-full bg-black/50 py-2 text-center">
+                                    <span className="block text-white text-sm md:text-base font-semibold">
+                                        {sub?.name}
+                                    </span>
+                                    {sub?.starting_price && (
+                                        <span className="block text-white text-xs md:text-sm font-medium">
+                                            Starts from ₹{sub?.starting_price}
+                                        </span>
+                                    )}
+                                </div>
+                            </div>
+                        ))}
+                    </div>
                 </div>
-            ) : paginatedItems?.length > 0 ? (
-                <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-6">
-                    {paginatedItems.map((product: any, idx: number) => (
-                        <div
-                            key={idx}
-                            className=""
-                            onClick={() => router.push(`/shop/${slugConvert(product?.name)}`)}
-                        >
-                            <ProductCard
-                                image={product?.image_urls[0] || ''}
-                                hoverImage={product?.image_urls[1] || ''}
-                                title={product?.name}
-                                price={product?.price}
-                                onAddToCart={() => alert(`Add to cart: ${product?.name}`)}
-                                onView={() => router.push(`/shop/${slugConvert(product.name)}`)}
-                                onWishlist={() => alert(`Wishlist: ${product?.name}`)}
-                                product={product}
-                            />
-                        </div>
-                    ))}
-                    {totalPages > 1 && (
-                        <div className="flex justify-center mt-6">
-                            <Pagination
-                                currentPage={currentPage}
-                                totalPages={totalPages}
-                                onPageChange={(page) => {
-                                    setCurrentPage(page);
-                                    topRef.current?.scrollIntoView({ behavior: 'smooth' });
-                                }}
-                            />
-                        </div>
-                    )}
-                </div>
-            ) : (
-                <p className="text-center text-gray-500">No products found for this category.</p>
             )}
+
+
+            {paginatedItems?.length > 0 ? (
+                <>
+                    <div className="text-center my-4">
+                        <h2 className="text-2xl text-gray-700 font-bold">Products in {category?.name}</h2>
+                        <div className="w-20 h-1 bg-blue-500 mx-auto mt-2 rounded"></div>
+                    </div>
+                    {isLoading ? (
+                        <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-6">
+                            {[...Array(6)].map((_, idx) => (
+                                <div key={idx} className="px-2">
+                                    <ProductCardSkeleton />
+                                </div>
+                            ))}
+                        </div>
+                    ) : paginatedItems?.length > 0 ? (
+                        <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-6">
+                            {paginatedItems.map((product: any, idx: number) => (
+                                <div
+                                    key={idx}
+                                    className=""
+                                    onClick={() => router.push(`/shop/${(product?.name)}`)}
+                                >
+                                    <ProductCard
+                                        image={product?.image_urls[0] || ''}
+                                        hoverImage={product?.image_urls[1] || ''}
+                                        title={product?.name}
+                                        price={product?.price}
+                                        onAddToCart={() => alert(`Add to cart: ${product?.name}`)}
+                                        onView={() => router.push(`/shop/${(product.name)}`)}
+                                        onWishlist={() => alert(`Wishlist: ${product?.name}`)}
+                                        product={product}
+                                    />
+                                </div>
+                            ))}
+                            {totalPages > 1 && (
+                                <div className="flex justify-center mt-6">
+                                    <Pagination
+                                        currentPage={currentPage}
+                                        totalPages={totalPages}
+                                        onPageChange={(page) => {
+                                            setCurrentPage(page);
+                                            topRef.current?.scrollIntoView({ behavior: 'smooth' });
+                                        }}
+                                    />
+                                </div>
+                            )}
+                        </div>
+                    ) : (
+                        <p className="text-center text-gray-500">No products found for this category.</p>
+                    )}
+                </>
+            )
+                : (
+                    <div className="flex flex-col items-center justify-center py-20 text-center w-full">
+                        <div className="text-6xl mb-3">📭</div>
+                        <p className="text-lg font-semibold text-gray-600">
+                            No Products available
+                        </p>
+                    </div>
+                )}
+
+
+
             {signInmodal && (
                 <LoginModal open={signInmodal} handleClose={() => setSignInModal(false)} vendorId={vendorId} />
             )}

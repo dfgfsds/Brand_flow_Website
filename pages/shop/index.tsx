@@ -33,6 +33,7 @@ export default function Shop() {
     const { vendorId }: any = useVendor();
     const [getUserId, setUserId] = useState<string | null>(null);
     const { wishList, wishListLoading }: any = useWishList();
+    const [selectedSubcategory, setSelectedSubcategory] = useState("");
 
     useEffect(() => {
         const storedUserId = localStorage.getItem('userId');
@@ -45,6 +46,7 @@ export default function Shop() {
         setSelectedCategory((prev: any) =>
             prev === categoryId ? '' : categoryId
         );
+        setSelectedSubcategory("");
     };
     const handleCheckboxChangeIntension = (name: any) => {
         setSelectedIntension((prev: any) =>
@@ -82,6 +84,9 @@ export default function Shop() {
         const matchesCategory =
             !selectedCategory || item?.category === selectedCategory;
 
+        const matchesSubcategory =
+            !selectedSubcategory || item?.subcategory === selectedSubcategory;
+
         const matchesSearch =
             !searchQuery ||
             item?.name?.toLowerCase()?.includes(searchQuery.toLowerCase());
@@ -90,7 +95,8 @@ export default function Shop() {
             matchesAvailability &&
             matchesCategory &&
             matchesSearch &&
-            macthingIntension
+            macthingIntension &&
+            matchesSubcategory
         );
     });
 
@@ -179,20 +185,47 @@ export default function Shop() {
                     {/* Size */}
                     <div>
                         <h3 className="font-semibold mb-2">Category</h3>
-                        <div className="space-y-2 text-sm text-gray-600">
-                            {categories?.data?.map((category: any) => (
-                                <label key={category?.id} className="block">
-                                    <input
-                                        type="checkbox"
-                                        className="mr-2"
-                                        checked={selectedCategory === category.id}
-                                        onChange={() => handleCheckboxChange(category.id)}
-                                    />
-                                    {category?.name}
-                                </label>
+
+                        <div className="space-y-4 text-sm text-gray-700">
+
+                            {categories?.data?.map((category) => (
+                                <div key={category?.id}>
+
+                                    {/* ---------- CATEGORY CHECKBOX ---------- */}
+                                    <label className="font-semibold flex items-center gap-2">
+                                        <input
+                                            type="checkbox"
+                                            className="mr-2"
+                                            checked={selectedCategory === category.id}
+                                            onChange={() => handleCheckboxChange(category.id)}
+                                        />
+                                        {category?.name}
+                                    </label>
+
+                                    {/* ---------- SUBCATEGORIES ---------- */}
+                                    {selectedCategory === category?.id && category?.subcategories?.length > 0 && (
+                                        <div className="ml-6 mt-2 space-y-1 text-gray-600">
+
+                                            {category?.subcategories?.map((sub) => (
+                                                <label key={sub?.id} className="flex items-center gap-2">
+                                                    <input
+                                                        type="radio"
+                                                        name="subcategory"
+                                                        checked={selectedSubcategory === sub?.id}
+                                                        onChange={() => setSelectedSubcategory(sub?.id)}
+                                                    />
+                                                    {sub?.name}
+                                                </label>
+                                            ))}
+
+                                        </div>
+                                    )}
+                                </div>
                             ))}
+
                         </div>
                     </div>
+
 
                     {/* Availability */}
                     <div>
@@ -218,23 +251,7 @@ export default function Shop() {
                             </label>
                         </div>
                     </div>
-                    <div>
-                        <h3 className="font-semibold mb-2">Intension</h3>
-                        <div className="space-y-2 text-sm text-gray-600">
-                            {intentions?.map((category: any) => (
-                                <label key={category?.name} className="block">
-                                    <input
-                                        type="checkbox"
-                                        className="mr-2"
-                                        checked={selectedIntension === category.name}
-                                        onChange={() => handleCheckboxChangeIntension(category.name)}
-                                    />
-                                    {category?.name}
-                                </label>
-                            ))}
-                        </div>
-                    </div>
-
+                
                     {/* Clear Button */}
                     <button className="mt-4 px-4 py-1 bg-black text-white text-sm rounded"
                         onClick={() => {
@@ -243,6 +260,7 @@ export default function Shop() {
                             setSelectedCategory('');
                             setSearchQuery('');
                             setSelectedIntension('');
+                            setSelectedSubcategory('');
                         }}
                     >Clear all</button>
                 </aside>
@@ -289,7 +307,7 @@ export default function Shop() {
                             {finalProductData.map((product, idx) => (
                                 <div
                                     key={idx}
-                                    onClick={() => router.push(`/shop/${slugConvert(product?.name)}`)}
+                                    onClick={() => router.push(`/shop/${(product?.slug_name)}`)}
                                 >
                                     <ProductCard
                                         image={product?.image_urls[0] || ''}
@@ -297,7 +315,7 @@ export default function Shop() {
                                         title={product?.name}
                                         price={product?.price}
                                         onAddToCart={() => alert(`Add to cart: ${product?.name}`)}
-                                        onView={() => router.push(`/shop/${slugConvert(product?.name)}`)}
+                                        onView={() => router.push(`/shop/${(product?.slug_name)}`)}
                                         onWishlist={() => alert(`Wishlist: ${product?.name}`)}
                                         product={product}
                                     />

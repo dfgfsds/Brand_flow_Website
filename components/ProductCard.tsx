@@ -1,4 +1,4 @@
-import { postCartitemApi } from '@/api-endpoints/CartsApi';
+import { deleteCartitemsApi, postCartitemApi, updateCartitemsApi } from '@/api-endpoints/CartsApi';
 import { deleteWishListApi, postWishListApi } from '@/api-endpoints/products';
 import { useCurrency } from '@/context/CurrencyContext';
 import { useVendor } from '@/context/VendorContext';
@@ -70,6 +70,24 @@ const ProductCard: React.FC<ProductCardProps> = ({
 
         }
     }
+
+    
+    const handleUpdateCart = async (id: any, type: any, qty: any) => {
+        try {
+            if (qty === 1) {
+                const updateApi = await deleteCartitemsApi(`${id}`);
+                if (updateApi) {
+                    queryClient.invalidateQueries(['getCartitemsData'] as InvalidateQueryFilters);
+                }
+            } else {
+                const response = await updateCartitemsApi(`${id}/${type}/`);
+                if (response) {
+                    queryClient.invalidateQueries(['getCartitemsData'] as InvalidateQueryFilters);
+                }
+            }
+        } catch (error) { }
+    };
+
     // postWishListApi
     const handleWishList = async () => {
         try {
@@ -86,6 +104,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
                 queryClient.invalidateQueries(['getProductData'] as InvalidateQueryFilters);
             }
         } catch (error) {
+            setSignInModal(true)
             console.log(error)
         }
     }
@@ -105,6 +124,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
 
         }
     }
+
 
     // Calculate discount percentage where discount = MRP and price = selling price
     const getDiscountPercentage = () => {
@@ -165,7 +185,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
                             onClick={(e) => {
                                 e.stopPropagation();
                                 if (getUserId) {
-                                    handleAddCart(product.id, 1);
+                                    handleUpdateCart(product?.cartId, 'decrease', product?.cartQty)
                                 } else {
                                     setSignInModal(true);
                                 }
