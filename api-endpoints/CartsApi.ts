@@ -120,11 +120,18 @@ export const getAppliedCouponDataApi = async (query: any) => {
     return axios.get(`${ApiUrls.appliedCouponData}${formattedQuery}`);
 };
 
+// // DELETE COUPON API
+// export const deleteCouponApi = async (query: any,payload:any) => {
+//     const formattedQuery = query.endsWith('/') ? query : `${query}/`;
+//     return axios.delete(`${ApiUrls.coupons}${formattedQuery}`, { data: payload });
+// };
+
 // DELETE COUPON API
 export const deleteCouponApi = async (query: any,payload:any) => {
     const formattedQuery = query.endsWith('/') ? query : `${query}/`;
-    return axios.delete(`${ApiUrls.coupons}${formattedQuery}`, { data: payload });
+    return axios.delete(`${ApiUrls.removeCoupon}${formattedQuery}`, { data: payload });
 };
+
 // REMOVE CART COUPON API
 export const removeCartCoupon = async (cartId:any, couponId: any) => {
     return axios.delete(`cart/${cartId}/coupon/${couponId}/remove/`);
@@ -163,6 +170,11 @@ export const getReviewsApi = async (query: any) => {
 export const getAllCouponsApi = async (query:any) => {
   return axios.get(`${ApiUrls.coupons}${query}`);
 } 
+
+  // GET CART CALCULATE TOTAL API
+export const getCartCalculateTotalApi = async (query: any) => {
+    return axios.get(`${ApiUrls.cartCalculateTotal}${query}`);
+}
 
 
 

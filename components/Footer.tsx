@@ -29,6 +29,7 @@ const Footer = () => {
         enabled: !!vendorId
     })
     const socialMediaData = getVendorDeliveryDetailsData?.data?.data?.vendor_site_details?.social_media_icon;
+    const data = getVendorDeliveryDetailsData?.data?.data?.vendor_other_details;
 
     useEffect(() => {
         setUserId(localStorage.getItem('userId'));
@@ -156,12 +157,16 @@ const Footer = () => {
                     <div>
                         <h3 className="font-semibold mb-4 uppercase">Where to Contact Us</h3>
                         <ul className="space-y-2">
-                            <li>
-                                <a href="mailto:babukumaraswamy837@gmail.com" className="text-white">Info@brandflow.co.in</a>
-                            </li>
-                            <li>
-                                Ph No: <a href="tel:+919342934087" className="text-white">+91-7094256929</a>
-                            </li>
+                            {data?.support_email && (
+                                <li>
+                                    <a href={`mailto:${data?.support_email}`} className="text-purple-700">{data?.support_email}</a>
+                                </li>
+                            )}
+                            {data?.support_contact && (
+                                <li>
+                                    Ph No: <a href={`tel:${data?.support_contact}`} className="text-purple-700">{data?.support_contact}</a>
+                                </li>
+                            )}
                             <li>
                                 <span className="block font-medium mt-2">ADDRESS:</span>
                                 B&G<br />
@@ -218,7 +223,7 @@ const Footer = () => {
                         <a
                             href="https://www.ftdigitalsolutions.in/"
                             target="_blank"
-                            rel="noopener noreferrer"   
+                            rel="noopener noreferrer"
                             className="text-white hover:underline"
                         >
                             {/* FT Digital Solutions (Agency). */}

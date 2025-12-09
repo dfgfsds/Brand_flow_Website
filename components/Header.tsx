@@ -116,7 +116,7 @@ const Header: React.FC = () => {
                     <Link href="/">
                         <Image
                             src={logo}
-                            alt="Omsritara Logo"
+                            alt="BrandFlow Logo"
                             className="w-24 h-auto md:w-24"
                             priority
                         />
@@ -148,31 +148,6 @@ const Header: React.FC = () => {
                             Wishlist  <Heart size={18} />
                         </Link>
                         {/* currency switcher */}
-                        {/* <div className="relative" ref={currencyRef}>
-                            <button
-                                onClick={() => setIsCurrencyOpen((o) => !o)}
-                                className="flex items-center gap-1"
-                            >
-                                {currency} <ChevronDown className="w-4 h-4" />
-                            </button>
-                            {isCurrencyOpen && (
-                                <div className="absolute mt-2 bg-white shadow-md rounded-md border w-24">
-                                    {(['INR', 'USD'] as const).map((c) => (
-                                        <button
-                                            key={c}
-                                            onClick={() => {
-                                                setCurrency(c);
-                                                setIsCurrencyOpen(false);
-                                            }}
-                                            className="block w-full px-4 py-2 text-left hover:bg-gray-100"
-                                        >
-                                            {c}
-                                        </button>
-                                    ))}
-                                </div>
-                            )}
-                        </div> */}
-
                         {/* user / login */}
                         <div className="relative" ref={userMenuRef}>
                             {userName || userId ? (
@@ -231,14 +206,10 @@ const Header: React.FC = () => {
                     </button>
                 </div>
 
-
-                {/* ---------- DESKTOP MAIN NAV --------------------------------------- */}
                 <div className="hidden lg:flex justify-evenly px-12 py-1 text-md text-white bg-blue-900 mx-10 rounded-md">
                     <div className="flex justify-evenly w-full">
                         <Link href="/" className="nav-item">Home</Link>
                         <Link href="/shop" className="nav-item">Shop</Link>
-
-                        {/* Categories hover menu */}
                         <div
                             className="relative"
                             ref={categoriesRef}
@@ -263,10 +234,10 @@ const Header: React.FC = () => {
                                             <Fragment key={cat.id}>
                                                 <Link
                                                     href={`/categories/${slugConvert(cat.name)}`}
-                                                    className="block px-4 py-2 hover:bg-gray-100"
+                                                    className="block capitalize px-4 py-2 hover:bg-gray-100"
                                                     onClick={() => setIsCategoriesOpen(false)}
                                                 >
-                                                    {cat.name}
+                                                    {cat?.name}
                                                 </Link>
                                             </Fragment>
                                         ))
@@ -276,46 +247,6 @@ const Header: React.FC = () => {
                                 </div>
                             )}
                         </div>
-
-                        {/* Intention hover menu */}
-                        {/* <div
-                            className="relative"
-                            ref={intentionRef}
-                            onMouseEnter={() => setIsIntentionOpen(true)}
-                            onMouseLeave={() => setIsIntentionOpen(false)}
-                        >
-                            <button
-                                onClick={() => router.push("/shopByIntention")}
-                                className="nav-item"
-                                type="button"
-                            >
-                                Shop by Intention
-                                <ChevronDown className="w-4 h-4" />
-                            </button>
-
-                            {isIntentionOpen && (
-                                <div className="absolute left-0 w-56 bg-white border text-black rounded-md shadow text-sm z-50 max-h-80 overflow-y-auto no-scrollbar">
-                                    {isIntentionsLoading ? (
-                                        <div className="px-4 py-2">Loading…</div>
-                                    ) : intentions?.length ? (
-                                        intentions.map((cat: Category) => (
-                                            <Fragment key={cat.id}>
-                                                <Link
-                                                    href={`/shopByIntention/${cat.name}`}
-                                                    className="block px-4 py-2 hover:bg-gray-100"
-                                                    onClick={() => setIsIntentionOpen(false)}
-                                                >
-                                                    {cat.name}
-                                                </Link>
-                                            </Fragment>
-                                        ))
-                                     ) : (
-                                        <div className="px-4 py-2">No intentions found</div>
-                                    )}
-                                </div>
-                            )}
-                        </div> */}
-
                         <Link href="/blog" className="nav-item">Blog</Link>
                         <Link href="/contactUs" className="nav-item">Contact&nbsp;Us</Link>
                         <Link href="/aboutUs" className="nav-item">About&nbsp;Us</Link>

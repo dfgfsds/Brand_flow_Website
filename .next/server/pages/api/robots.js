@@ -1,8 +1,0 @@
-"use strict";(()=>{var e={};e.id=951,e.ids=[951],e.modules={145:e=>{e.exports=require("next/dist/compiled/next-server/pages-api.runtime.prod.js")},6249:(e,t)=>{Object.defineProperty(t,"l",{enumerable:!0,get:function(){return function e(t,n){return n in t?t[n]:"then"in t&&"function"==typeof t.then?t.then(t=>e(t,n)):"function"==typeof t&&"default"===n?t:void 0}}})},6189:(e,t,n)=>{n.r(t),n.d(t,{config:()=>s,default:()=>u,routeModule:()=>d});var i={};n.r(i),n.d(i,{default:()=>l});var r=n(1802),o=n(7153),a=n(6249);function l(e,t){t.setHeader("Content-Type","text/plain"),t.write(`User-agent: *
-Allow: /
-Disallow: /cart
-Disallow: /profile
-Disallow: /wishlist
-
-Sitemap: https://omsritara.in/sitemap.xml
-`),t.end()}let u=(0,a.l)(i,"default"),s=(0,a.l)(i,"config"),d=new r.PagesAPIRouteModule({definition:{kind:o.x.PAGES_API,page:"/api/robots",pathname:"/api/robots",bundlePath:"",filename:""},userland:i})},7153:(e,t)=>{var n;Object.defineProperty(t,"x",{enumerable:!0,get:function(){return n}}),function(e){e.PAGES="PAGES",e.PAGES_API="PAGES_API",e.APP_PAGE="APP_PAGE",e.APP_ROUTE="APP_ROUTE"}(n||(n={}))},1802:(e,t,n)=>{e.exports=n(145)}};var t=require("../../webpack-api-runtime.js");t.C(e);var n=t(t.s=6189);module.exports=n})();
