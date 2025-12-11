@@ -2,13 +2,14 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
     images: {
-        domains: [
-            "www.reikicrystalproducts.com",
-            "ecomapi.ftdigitalsolutions.org",
-            "cdn.shopify.com",
-            "semantic-ui.com",
-            "cdn-icons-png.flaticon.com",                     
-        ],
+        unoptimized: true,
+        // domains: [
+        //     "www.reikicrystalproducts.com",
+        //     "ecomapi.ftdigitalsolutions.org",
+        //     "cdn.shopify.com",
+        //     "semantic-ui.com",
+        //     "cdn-icons-png.flaticon.com",                     
+        // ],
     },
     async rewrites() {
         return [
