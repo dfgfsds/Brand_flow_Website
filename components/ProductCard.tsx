@@ -71,7 +71,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
         }
     }
 
-    
+
     const handleUpdateCart = async (id: any, type: any, qty: any) => {
         try {
             if (qty === 1) {
@@ -145,9 +145,8 @@ const ProductCard: React.FC<ProductCardProps> = ({
 
     return (
         <>
-            <div className="bg-white rounded-xl overflow-hidden shadow-lg relative group transition duration-300 ease-in-out hover:shadow-lg">
+            {/* <div className="bg-white rounded-xl overflow-hidden shadow-lg relative group transition duration-300 ease-in-out hover:shadow-lg">
 
-                {/* Image Container */}
                 <div className="relative h-[165px] md:h-[260px] w-full flex items-center justify-center bg-white">
                     {discountBadge && (
                         <span className="absolute z-[45] top-2 left-2 bg-red-600 text-white text-xs font-bold px-2 py-1 rounded-md">
@@ -155,7 +154,6 @@ const ProductCard: React.FC<ProductCardProps> = ({
                         </span>
                     )}
                     <div className="relative overflow-hidden">
-                        {/* Base Image */}
                         {image && (
                             <Image
                                 src={image}
@@ -166,7 +164,6 @@ const ProductCard: React.FC<ProductCardProps> = ({
                             />
                         )}
 
-                        {/* Hover Image Sliding In */}
                         {hoverImage && (
                             <Image
                                 src={hoverImage}
@@ -211,7 +208,6 @@ const ProductCard: React.FC<ProductCardProps> = ({
                     )}
 
 
-                    {/* Eye Icon - Hover from Center to Left */}
 
                     <button
                         onClick={onView}
@@ -220,7 +216,6 @@ const ProductCard: React.FC<ProductCardProps> = ({
                         <Eye size={20} />
                     </button>
 
-                    {/* Heart Icon - Hover from Center to Right */}
                     {product?.isLike === true ? (
                         <button
                             onClick={handleDeleteWishList}
@@ -239,7 +234,6 @@ const ProductCard: React.FC<ProductCardProps> = ({
                     )}
                 </div>
 
-                {/* Product Info */}
                 <div className="text-center px-6 py-6">
                     <h3 className="text-gray-800 font-bold text-sm line-clamp-1 text-left">{title}</h3>
                     <div className='flex justify-between'>
@@ -252,6 +246,127 @@ const ProductCard: React.FC<ProductCardProps> = ({
                         )}
                     </div>
                 </div>
+            </div> */}
+
+            <div className="bg-white rounded-xl overflow-hidden shadow-lg relative group transition duration-300 ease-in-out hover:shadow-lg"
+                onClick={() => onView()}
+            >
+
+                <div className="relative h-[165px] md:h-[260px] w-full flex items-center justify-center bg-white">
+                    {discountBadge && (
+                        <span className="absolute z-[45] top-2 left-2 bg-red-600 text-white text-xs font-bold px-2 py-1 rounded-md">
+                            {discountBadge}
+                        </span>
+                    )}
+                    <div className="relative overflow-hidden w-full h-full">
+                        {image && (
+                            <Image
+                                src={image}
+                                alt={title}
+                                width={300}
+                                height={400}
+                                className="object-cover w-full h-full mx-auto transition-opacity duration-500 md:group-hover:opacity-0 rounded-md"
+                            />
+                        )}
+
+
+                        {hoverImage && (
+                            <Image
+                                src={hoverImage}
+                                alt={`${title} - hover`}
+                                width={300}
+                                height={400}
+                                className="object-cover w-full h-full mx-auto absolute top-0 left-0 transform translate-x-full md:group-hover:translate-x-0 transition-transform duration-500 ease-in-out rounded-md"
+                            />
+                        )}
+
+                    </div>
+
+                    {product?.cartId ? (
+                        <button
+                            onClick={(e) => {
+                                e.stopPropagation();
+                                if (getUserId) {
+                                    handleUpdateCart(product?.cartId, 'decrease', product?.cartQty)
+                                } else {
+                                    setSignInModal(true);
+                                }
+                            }}
+                            className="absolute bottom-1.5 left-1/2 -translate-x-1/2 w-10 h-10 md:w-12 md:h-12 bg-green-400 text-white rounded-full flex items-center justify-center shadow hover:bg-green-600 hover:text-white transition z-10 "
+                        >
+                            <Check size={20} />
+                        </button>
+                    ) : (
+                        <button
+                            onClick={(e) => {
+                                e.stopPropagation();
+                                if (getUserId) {
+                                    handleAddCart(product.id, 1);
+                                } else {
+                                    setSignInModal(true);
+                                }
+                            }}
+                            className="absolute bottom-1.5 left-1/2 -translate-x-1/2 w-10 h-10 md:w-12 md:h-12 bg-gray-200 border-[3px] border-white rounded-full flex items-center justify-center shadow hover:bg-[#991b1b] hover:text-white transition z-10 "
+                        >
+                            <ShoppingCart size={20} />
+                        </button>
+                    )}
+
+                    <button
+                        onClick={onView}
+                        className="absolute bottom-1.5 left-1/2 md:opacity-0 md:group-hover:opacity-100 opacity-100 -translate-x-16 md:group-hover:-translate-x-20 md:translate-x-0 w-10 md:w-12 h-10 md:h-12 bg-gray-200 border-[3px] border-white rounded-full flex items-center justify-center shadow hover:bg-[#991b1b] hover:text-white transition-all duration-500 z-10"
+                    >
+                        <Eye size={20} />
+                    </button>
+
+                    {product?.isLike === true ? (
+                        <button
+                            onClick={(e) => {
+                                if (getUserId) {
+                                    e.stopPropagation();
+                                    handleDeleteWishList();
+                                } else {
+                                    setSignInModal(true);
+                                }
+                            }}
+                            className="absolute bottom-1.5 right-4 md:right-1/2 md:opacity-0 md:group-hover:opacity-100 opacity-100 md:group-hover:translate-x-20 md:translate-x-0 w-10 h-10 md:w-12 md:h-12 bg-red-500 text-white border-[3px] border-white rounded-full flex items-center justify-center shadow hover:bg-[#991b1b] hover:text-white transition-all duration-500 z-9999"
+                        >
+                            <Heart size={20} />
+                        </button>
+                    ) : (
+                        <button
+                            onClick={(e) => {
+                                if (getUserId) {
+                                    e.stopPropagation();
+                                    handleWishList();
+                                } else {
+                                    setSignInModal(true);
+                                }
+                            }}
+                            className="absolute bottom-1.5 right-4 md:right-1/2 md:opacity-0 md:group-hover:opacity-100 opacity-100 md:group-hover:translate-x-20 md:translate-x-0 w-10 h-10 md:w-12 md:h-12 bg-gray-200 border-[3px] border-white rounded-full flex items-center justify-center shadow hover:bg-[#991b1b] hover:text-white transition-all duration-500 z-9999"
+                        >
+                            <Heart size={20} />
+                        </button>
+                    )}
+                </div>
+
+                {/* Product Details */}
+                <div className="text-center px-6 py-6">
+                    <h3 className="text-gray-800 font-bold text-sm line-clamp-1 text-left capitalize">{title}</h3>
+                    <div className='flex justify-between'>
+                        <p className="text-yellow-500 font-bold mt-1">{convertPrice(Number(price))}</p>
+                        {product?.ratings ? (
+                            <div className="flex items-center gap-1 text-yellow-500">
+                                <Star size={14} fill="currentColor" className='text-yellow-500' />
+                                <span className="text-sm font-semibold text-gray-700">{product?.ratings}</span>
+                            </div>
+                        ) : (
+                            <Star size={14} fill="currentColor" className='text-yellow-500' />
+                        )}
+                    </div>
+                </div>
+
+
             </div>
             {signInmodal && (
                 <LoginModal open={signInmodal} handleClose={() => setSignInModal(false)} vendorId={vendorId} />

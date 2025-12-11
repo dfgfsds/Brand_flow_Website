@@ -19,7 +19,7 @@ export default function SubCategoryProducts() {
 
 
     const findSubCategoryProduct = products?.data?.filter(
-        (item: any) => item?.subcategory_name === subId
+        (item: any) => item?.subcategory_slug_name === subId
     );
 
 
