@@ -108,6 +108,7 @@ import { useVendor } from '@/context/VendorContext';
 import { baseUrl } from '@/api-endpoints/ApiUrls';
 import axios from 'axios';
 import { useRouter } from 'next/router';
+import Image from 'next/image';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -208,8 +209,8 @@ export default function HeroSection() {
   };
 
   useEffect(() => {
-  if (vendorId) bannerGetApi();
-}, [vendorId]);
+    if (vendorId) bannerGetApi();
+  }, [vendorId]);
 
 
   // ✅ Prevent render crash if banners not ready
@@ -230,7 +231,7 @@ export default function HeroSection() {
             className="cursor-pointer"
             onClick={() => handleBannerClick(banner)}
           >
-            {banner?.image_url ? (
+            {/* {banner?.image_url ? (
               <img
                 className="md:rounded-lg md:object-cover w-full h-[70vh] md:h-auto"
                 src={banner.image_url}
@@ -238,7 +239,14 @@ export default function HeroSection() {
               />
             ) : (
               <div className="bg-gray-200 w-full h-[70vh]" /> // fallback
-            )}
+            )} */}
+            <Image
+              src={banner.image_url}
+              alt={banner.title || "Banner"}
+              width={2000}
+              height={800}
+              className="md:rounded-lg md:object-cover w-full h-[70vh] md:h-auto"
+            />
           </div>
         ))}
       </Slider>
