@@ -7,7 +7,7 @@ const nextConfig = {
             "ecomapi.ftdigitalsolutions.org",
             "cdn.shopify.com",
             "semantic-ui.com",
-            "cdn-icons-png.flaticon.com",
+            "cdn-icons-png.flaticon.com",                     
         ],
     },
     async rewrites() {
