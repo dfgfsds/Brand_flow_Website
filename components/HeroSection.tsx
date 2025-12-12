@@ -139,10 +139,10 @@ export default function HeroSection() {
       if (res.data?.banners && Array.isArray(res.data.banners)) {
         setBanners(res.data.banners);
       } else {
-        console.warn('⚠️ Unexpected banner API response:', res.data);
+        // console.warn('⚠️ Unexpected banner API response:', res.data);
       }
     } catch (error) {
-      console.error('❌ Error fetching banners:', error);
+      // console.error('❌ Error fetching banners:', error);
     }
   };
 
@@ -215,7 +215,6 @@ export default function HeroSection() {
   }, [vendorId]);
 
 
-  // ✅ Prevent render crash if banners not ready
   if (!filteredBanners?.length) {
     return (
       <div className="relative h-[70vh] flex items-center justify-center bg-gray-100">
