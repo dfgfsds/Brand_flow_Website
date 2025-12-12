@@ -69,12 +69,12 @@ export default function ProfileOrders() {
 
                 <div>
                   <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-md font-bold ${order?.status === 'Delivered' ? 'bg-green-100 text-green-800' :
-                    order?.status === 'Pending' ? 'bg-yellow-100 text-yellow-800' :
+                    order?.status === 'Pending' ? 'bg-blue-100 text-blue-800' :
                       order?.status === 'Processing' ? 'bg-blue-50 text-blue-700' :
                         order?.status === 'Shipped' ? 'bg-indigo-50 text-indigo-700' :
                           order?.status === 'Cancelled' ? 'bg-red-50 text-red-700' :
                             order?.status === 'Delivered' ? 'bg-green-100 text-green-700' :
-                              'bg-red-100 text-yellow-500'
+                              'bg-red-100 text-blue-900'
                     }`}>
                     {order.status}
                   </span>
@@ -96,6 +96,17 @@ export default function ProfileOrders() {
                           />
                         )}
 
+                        {/* {product?.product?.image_urls?.[0] && (
+                          <img
+                            src={product.product?.image_urls?.[0] || "https://semantic-ui.com/images/wireframe/image.png"}
+                            alt={product.name}
+                            className="w-full h-full object-cover"
+                            width={100}
+                            height={100}
+                          />
+                        )} */}
+
+
                       </div>
 
                       <div className="flex-grow">
@@ -107,7 +118,7 @@ export default function ProfileOrders() {
 
                       <div>
                         <button
-                          className='rounded bg-blue-900 text-white font-bold px-4 py-2 hover:bg-red-700 transition-colors'
+                          className='rounded bg-blue-900 text-white font-bold px-4 py-2 hover:bg-blue-700 transition-colors'
                           onClick={() => router.push(`/shop/${slugConvert(product?.product?.name)}`)}
                         >
                           Buy Again
@@ -117,7 +128,7 @@ export default function ProfileOrders() {
                   ))}
                 </div>
 
-                <div className="mt-4 flex py-1 justify-between font-bold hover:text-yellow-500">
+                <div className="mt-4 flex py-1 justify-between font-bold hover:text-blue-900">
                   <button
                     onClick={() => router.push(`/order-view/${order.id}`)}
                     className='flex gap-2'

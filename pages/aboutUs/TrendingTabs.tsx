@@ -46,7 +46,7 @@ export default function TrendingTabs() {
 
     return (
         <div className="max-w-6xl mx-auto px-4 py-12">
-   <h3 className="text-2xl font-semibold text-yellow-500 mb-4">Our Gallery</h3>
+   <h3 className="text-2xl font-semibold text-blue-900 mb-4">Our Gallery</h3>
             {/* Tabs */}
             <div className="overflow-x-auto scrollbar-hide mb-6">
                 <div className="flex gap-4 md:gap-6 border-b border-gray-200 px-2 md:px-0">
@@ -58,8 +58,8 @@ export default function TrendingTabs() {
                                 setPage(1);
                             }}
                             className={`relative flex-shrink-0 px-4 py-2 font-semibold transition-all whitespace-nowrap ${activeTab === tab.id
-                                ? "text-yellow-500 border-b-2 border-yellow-500"
-                                : "text-gray-500 hover:text-yellow-500"
+                                ? "text-blue-900 border-b-2 border-blue-500"
+                                : "text-gray-500 hover:text-blue-900"
                                 }`}
                         >
                             {tab.label}

@@ -54,7 +54,7 @@ export default function ThankYouPage() {
                             </button>
                         </Link>
                         <Link href="/shop">
-                            <button className="w-full sm:w-auto border border-yellow-500 text-yellow-500 hover:bg-[#f8dfdc] font-medium py-2 px-6 rounded transition">
+                            <button className="w-full sm:w-auto border border-blue-500 text-blue-900 hover:bg-[#f8dfdc] font-medium py-2 px-6 rounded transition">
                                 Shop More
                             </button>
                         </Link>

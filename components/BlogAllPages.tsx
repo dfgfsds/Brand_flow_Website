@@ -9,11 +9,10 @@ const BlogAllPages: React.FC<{ blogs: any[] }> = ({ blogs }) => {
     return (
         <section className="py-6 px-4 bg-white">
             <div className="max-w-7xl mx-auto container">
-                    {blogs?.length !== 0 && (
                 <h2 className="text-3xl font-extrabold text-center mb-10">
                     Our Blogs
                 </h2>
-                    )}
+
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
                     {blogs?.map((post, idx) => {
                         const date = new Date(post?.created_at);
@@ -35,6 +34,15 @@ const BlogAllPages: React.FC<{ blogs: any[] }> = ({ blogs }) => {
                                                 fill
                                                 className="object-cover"
                                             />
+                                            // <img
+                                            //     src={post.banner_url?.startsWith("http")
+                                            //         ? post.banner_url
+                                            //         : ``
+                                            //     }
+                                            //     alt={post.title}
+                                            //     className="object-cover w-full h-full absolute inset-0"
+                                            // />
+
                                         )}
 
                                         {/* Date Badge */}
@@ -70,15 +78,6 @@ const BlogAllPages: React.FC<{ blogs: any[] }> = ({ blogs }) => {
                         );
                     })}
                 </div>
-                {blogs?.length === 0 && (
-                    <div className="flex flex-col items-center justify-center py-20 text-center w-full">
-                        <div className="text-6xl mb-3">📭</div>
-                        <p className="text-lg font-semibold text-gray-600">
-                            No blogs available
-                        </p>
-                    </div>
-                )}
-
             </div>
         </section>
     );

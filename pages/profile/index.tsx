@@ -39,8 +39,8 @@ export default function ProfilePage() {
                     onClick={() => setActiveTab(tab.value)}
                     className={`px-1 pb-2 text-sm font-bold transition border-b-2 ${
                       activeTab === tab.value
-                        ? 'border-yellow-500 text-yellow-500'
-                        : 'border-transparent text-gray-600 hover:text-red-700'
+                        ? 'border-blue-500 text-blue-900'
+                        : 'border-transparent text-gray-600 hover:text-blue-700'
                     }`}
                   >
                     {tab.label}

@@ -188,7 +188,6 @@ function LoginModal({ open, handleClose, vendorId }: any) {
           </button>
         </div>
 
-
         <form
           onSubmit={handleSubmit(isOtpMode ? (otpSent ? handleVerifyOtp : handleSendOtp) : handleEmailLogin)}
           className="space-y-6"
@@ -325,7 +324,7 @@ function LoginModal({ open, handleClose, vendorId }: any) {
           <button
             type="submit"
             disabled={loading}
-            className="w-full flex gap-2 justify-center py-2 px-4 rounded-md text-white bg-blue-900 hover:bg-yellow-300"
+            className="w-full flex gap-2 justify-center py-2 px-4 rounded-md text-white bg-blue-900 hover:bg-blue-800"
           >
             {isOtpMode ? (otpSent ? 'Verify OTP & Login' : 'Send OTP') : 'Sign in'}
             {loading && <Loader className="animate-spin" />}

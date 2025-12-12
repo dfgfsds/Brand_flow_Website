@@ -77,6 +77,19 @@ export default function SingleBlogPage({ blog }: { blog: Blog | null }) {
                 </div>
             )}
 
+            {/* {blog.banner_url && (
+                <div className="relative w-full h-96 rounded-lg overflow-hidden mb-8">
+                    <img
+                        src={blog.banner_url}
+                        alt={blog.title}
+                        width={800}
+                        height={500}
+                        className="object-cover"
+                    />
+                </div>
+            )} */}
+
+
             {/* Blog Title */}
             <h1 className="text-3xl font-bold mb-4">{blog.title}</h1>
 

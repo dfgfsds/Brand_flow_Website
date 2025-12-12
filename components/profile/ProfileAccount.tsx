@@ -7,6 +7,7 @@ import { useVendor } from '@/context/VendorContext';
 import { InvalidateQueryFilters, useQueryClient } from '@tanstack/react-query';
 import { useRouter } from 'next/navigation';
 import { Loader } from 'lucide-react';
+import toast from 'react-hot-toast';
 
 export default function ProfileAccount() {
   const { user }: any = useUser();
@@ -15,7 +16,7 @@ export default function ProfileAccount() {
   const [openModal, setOpenModal] = useState(false);
   const queryClient = useQueryClient();
   const router = useRouter();
-  const[loader,setLoader]=useState(false);
+  const [loader, setLoader] = useState(false);
 
   useEffect(() => {
     if (user) {
@@ -36,13 +37,17 @@ export default function ProfileAccount() {
     try {
       const updateApi = await updateUserAPi(`/${user?.data?.id}`, {
         ...formData,
-        updated_by: user?.data?.name ? user?.data?.name:'user',
+        updated_by: user?.data?.name ? user?.data?.name : 'user',
         role: 3,
         vendor: vendorId
       });
       if (updateApi) {
         queryClient.invalidateQueries(['gerUserData'] as InvalidateQueryFilters);
-        setLoader(false)
+        setLoader(false);
+        toast.success("Profile updated successfully!", {
+          position: "top-right",
+          duration: 2500,
+        });
       }
     } catch (err) {
       console.error(err);
@@ -112,14 +117,14 @@ export default function ProfileAccount() {
           <button
             onClick={handleUpdate}
             disabled={loader}
-            className="px-4 py-2 bg-blue-900 hover:bg-red-700 font-bold text-white rounded-md"
+            className="px-4 py-2 bg-blue-900 hover:bg-blue-700 font-bold text-white rounded-md"
           >
             {loader ? (
               <div className='flex gap-2'>
-                <Loader/> Loading...
+                <Loader /> Loading...
               </div>
-            ):' Save Changes'}
-           
+            ) : ' Save Changes'}
+
           </button>
         </div>
       </div>
@@ -127,7 +132,7 @@ export default function ProfileAccount() {
       {/* === Logout Button === */}
       <div className="flex justify-between items-center pt-2">
         <button
-          className="px-4 py-2 bg-blue-900 hover:bg-red-700 text-white font-bold rounded-md"
+          className="px-4 py-2 bg-blue-900 hover:bg-blue-700 text-white font-bold rounded-md"
           onClick={() => setOpenModal(true)}
         >
           Logout
@@ -157,7 +162,7 @@ export default function ProfileAccount() {
               <button
                 type="button"
                 onClick={handleLogout}
-                className="px-4 py-2 bg-red-600 text-white rounded-md text-sm font-medium hover:bg-red-700"
+                className="px-4 py-2 bg-blue-600 text-white rounded-md text-sm font-medium hover:bg-blue-700"
               >
                 Confirm Logout
               </button>

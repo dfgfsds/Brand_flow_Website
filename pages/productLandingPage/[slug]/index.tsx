@@ -25,7 +25,6 @@ import Head from 'next/head';
 
 export default function ProductLandingPage() {
     const router = useRouter();
-    // const params = useParams();
     const params = useParams();
     const slug = params?.slug;
     const { products, isAuthenticated, isLoading }: any = useProducts();
@@ -84,7 +83,7 @@ export default function ProductLandingPage() {
         fetchAddressByPincode();
     }, [pincode, setValue]);
 
-    // console.log(slug, "slug");
+    console.log(slug, "slug");
 
 
     function slugConvert(name: string) {
@@ -95,7 +94,7 @@ export default function ProductLandingPage() {
             .replace(/[^\w-]+/g, '');     // Remove non-word characters except hyphens
     }
     const productDetails = products?.data?.find((item: any) => slugConvert(item.name) === slug);
-// console.log(productDetails, "productDetails");
+console.log(productDetails, "productDetails");
     const handleAddCart = async (id: any, qty: any) => {
         const payload = {
             cart: localStorage.getItem('cartId') ? Number(localStorage.getItem('cartId')) : '',
@@ -113,7 +112,7 @@ export default function ProductLandingPage() {
                 queryClient.invalidateQueries(['getProductData'] as InvalidateQueryFilters);
             }
         } catch (error: any) {
-            // console.log(error?.response);
+            console.log(error?.response);
             toast.error(error?.response?.data?.message || 'Something went wrong!')
 
         }
@@ -350,9 +349,9 @@ export default function ProductLandingPage() {
                 fetchCartAndDeliveryCharge()
             }
         } catch (error: any) {
-            // console.log(error?.response?.data?.error);
+            console.log(error?.response?.data?.error);
         } finally {
-            // console.log("Coupon applied successfully");
+            console.log("Coupon applied successfully");
         }
     };
 
@@ -410,7 +409,7 @@ export default function ProductLandingPage() {
                     <div>
                         <h1 className="text-2xl font-semibold border-b-2 border-gray-500 capitalize mb-5">{productDetails?.name}</h1>
                         <div className='flex items-center gap-2 text-sm text-gray-500 mb-4'>
-                            <div className="mt-4 text-2xl font-bold text-yellow-500 py-2 border-gray-200">{convertPrice(Number(productDetails?.price))}</div>
+                            <div className="mt-4 text-2xl font-bold text-blue-900 py-2 border-gray-200">{convertPrice(Number(productDetails?.price))}</div>
                             {/* {productDetails?.price !== productDetails?.discount && (
                             <div className="mt-4 text-xl font-bold text-gray-600  py-2 border-gray-200 line-through">{convertPrice(Number(productDetails?.discount))}</div>
                         )} */}
@@ -465,7 +464,7 @@ export default function ProductLandingPage() {
 
                         <div className="mt-6 flex gap-2">
                             <button
-                                className="bg-blue-900 text-white px-5 py-2 rounded hover:bg-yellow-300 flex items-center gap-2"
+                                className="bg-blue-900 text-white px-5 py-2 rounded hover:bg-blue-300 flex items-center gap-2"
                                 onClick={() => setMobileModal(true)}
                             >
                                 <ShoppingBasket size={18} /> Buy Now
@@ -549,7 +548,7 @@ export default function ProductLandingPage() {
                 {productDetails?.id == 18432 && (
                     <section className="max-w-7xl mx-auto px-4 py-12 text-gray-800">
                         <h2 className="text-3xl md:text-4xl font-bold text-center mb-6 leading-snug">
-                            Attract Wealth and Opportunity with Our <span className="text-yellow-500">Money Magnet Fusion Bracelet</span>
+                            Attract Wealth and Opportunity with Our <span className="text-blue-900">Money Magnet Fusion Bracelet</span>
                         </h2>
 
                         <p className="text-center text-lg text-gray-600 mb-8 max-w-2xl mx-auto">
@@ -584,7 +583,7 @@ export default function ProductLandingPage() {
                                 },
                             ].map((item, idx) => (
                                 <div key={idx} className="bg-gray-50 p-6 rounded-xl shadow-sm hover:shadow-md transition">
-                                    <h3 className="text-xl font-semibold text-yellow-500 mb-2">{item.title}</h3>
+                                    <h3 className="text-xl font-semibold text-blue-900 mb-2">{item.title}</h3>
                                     <p className="text-gray-600">{item.desc}</p>
                                 </div>
                             ))}
@@ -615,8 +614,8 @@ export default function ProductLandingPage() {
                             </div>
                         </div>
 
-                        <div className="mt-12 bg-yellow-50 border-l-4 border-yellow-500 p-6 rounded-md">
-                            <h3 className="text-xl font-bold text-yellow-500 mb-4">🔍 Benefits at a glance:</h3>
+                        <div className="mt-12 bg-blue-50 border-l-4 border-blue-500 p-6 rounded-md">
+                            <h3 className="text-xl font-bold text-blue-900 mb-4">🔍 Benefits at a glance:</h3>
                             <ul className="list-disc pl-5 space-y-2 text-gray-700">
                                 <li><strong>Confidence & focus</strong> – Tiger Eye</li>
                                 <li><strong>Wealth attraction & prosperity mindset</strong> – Pyrite</li>
@@ -634,7 +633,7 @@ export default function ProductLandingPage() {
                     productDetails?.id == 19403 && (
                         <div className="bg-white text-gray-800 mt-10">
                             {/* Hero Section */}
-                            <section className="bg-gradient-to-r from-yellow-100 to-orange-100 py-16 px-6 text-center">
+                            <section className="bg-gradient-to-r from-blue-100 to-orange-100 py-16 px-6 text-center">
                                 <h1 className="text-4xl font-bold text-gray-900 mb-4">
                                     Welcome to Om Sri Tara – Your Path to Divine Energy Begins Here
                                 </h1>
@@ -718,7 +717,7 @@ export default function ProductLandingPage() {
                             {/* Why Together */}
                             <section className="py-12 px-6 max-w-5xl mx-auto">
                                 <h3 className="text-2xl font-semibold mb-4 text-center">Why Take All Three Together?</h3>
-                                <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-6">
+                                <div className="bg-blue-50 border border-blue-200 rounded-lg p-6">
                                     <p className="mb-2">This power trio works in harmony:</p>
                                     <ul className="list-disc list-inside text-gray-700 mb-4">
                                         <li>💎 Bracelet sets your personal vibration for wealth.</li>
@@ -743,7 +742,7 @@ export default function ProductLandingPage() {
                             <section className="py-12 px-6 text-center">
                                 <h3 className="text-3xl font-bold mb-4">Ready to Attract Abundance?</h3>
                                 <p className="text-gray-700 mb-6">Begin your money manifestation journey today with our limited-time inaugural offer.</p>
-                                <button onClick={() => setMobileModal(true)} className="bg-blue-900 text-white px-6 py-3 rounded-lg hover:bg-blue-900 transition">
+                                <button onClick={() => setMobileModal(true)} className="bg-blue-900 text-white px-6 py-3 rounded-lg hover:bg-blue-800 transition">
                                     Grab Your Combo Now
                                 </button>
                             </section>
@@ -973,7 +972,7 @@ export default function ProductLandingPage() {
                                                     value={address.id}
                                                     checked={selectedAddressId == address.id}
                                                     onChange={() => handleSelectAddress(address)}
-                                                    className="mt-1 accent-yellow-500 focus:ring-yellow-500 h-4 w-4 border-gray-300 rounded"
+                                                    className="mt-1 accent-blue-500 focus:ring-blue-500 h-4 w-4 border-gray-300 rounded"
                                                 />
 
                                                 <div className="flex flex-col space-y-1 text-gray-800">

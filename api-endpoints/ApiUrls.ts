@@ -1,5 +1,5 @@
-export const baseUrl = 'https://ecomapi.ftdigitalsolutions.org';  // live API
-// export const baseUrl = 'https://test-ecomapi.justvy.in'; // test API
+// export const baseUrl = 'https://ecomapi.ftdigitalsolutions.org';  // live API
+export const baseUrl = 'https://test-ecomapi.justvy.in'; // test API +
 // const baseUrl ='http://82.29.161.36'
 
 const cartCreate = `${baseUrl}/api/carts/`;
@@ -40,9 +40,9 @@ const wishlist = `${baseUrl}/api/wishlist/`;
 const sendSmsOtpUser = `${baseUrl}/send-sms-opt-user/`;
 const otpVerify = `${baseUrl}/verify-sms-opt-return-user/`;
 const reviews = `${baseUrl}/reviews/`;
-const paymentDeliveryPartner=`${baseUrl}/vendor-site-payment-delivery-partner-details/`;
-const cartCalculateTotal=`${baseUrl}/cart/calculate-total/`;
 const removeCoupon = `${baseUrl}/cart/`;
+const cartCalculateTotal=`${baseUrl}/cart/calculate-total/`;
+const paymentDeliveryPartner=`${baseUrl}/vendor-site-payment-delivery-partner-details/`;
 
 export default {
   cartCreate,
@@ -84,7 +84,7 @@ export default {
   sendSmsOtpUser,
   otpVerify,
   reviews,
-  paymentDeliveryPartner,
-  cartCalculateTotal,
   removeCoupon,
+  cartCalculateTotal,
+  paymentDeliveryPartner,
 };

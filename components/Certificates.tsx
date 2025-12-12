@@ -71,6 +71,21 @@ const Certificates = () => {
                   />
                 )}
 
+                {/* {item?.src && (
+                  <img
+                    src={
+                      item.src?.startsWith("http")
+                        ? item.src
+                        : `https://ecomapi.ftdigitalsolutions.org${item.src}`
+                    }
+                    alt={item.alt}
+                    width="120"
+                    height="120"
+                    className="object-contain hover:scale-105 transition-transform h:32"
+                  />
+                )} */}
+
+
               </div>
             </div>
           ))}

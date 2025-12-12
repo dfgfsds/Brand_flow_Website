@@ -20,9 +20,7 @@ import { slugConvert } from '@/lib/utils';
 
 export default function CategoriesBasedProduct() {
     const topRef = useRef<HTMLDivElement>(null);
-    // const { id } = useParams() ?? {};
-    const params = useParams();
-    const id = params?.id;
+    const { id } = useParams() ?? {};
     const [getUserId, setUserId] = useState<string | null>(null);
     const [getCartId, setCartId] = useState<string | null>(null);
     const [getUserName, setUserName] = useState<string | null>(null);
@@ -67,7 +65,7 @@ export default function CategoriesBasedProduct() {
         (product: any) => product?.category === category?.id
     );
 
-    // console.log('Filtered Products:', filteredProducts);
+    console.log('Filtered Products:', filteredProducts);
     // Keep only products with status === true (robust normalization)
     const activeProducts = filteredProducts?.filter((p: any) => {
         const s = p?.status;
@@ -112,14 +110,28 @@ export default function CategoriesBasedProduct() {
                 <ArrowLeft onClick={() => router.back()} className='text-gray-400 cursor-pointer' />
                 <div className="text-md text-gray-400 flex mt-0.5 gap-1">
                     <span>
-                        Home</span><span className='cursor-pointer flex' onClick={() => router.back()}>/ {categoryName}</span>  <span className='text-blue-500'>/ Shop</span></div>
+                        Home</span><span className='cursor-pointer flex' onClick={() => router.back()}>/ {categoryName}</span>  <span className='text-blue-900'>/ Shop</span></div>
             </div>
+            {/* <img
+                src={category?.banner_image ?? img.src}
+                alt="banner image"
+                className="w-full h-32 md:h-80 px-2 md:m-2 rounded-md"
+            /> */}
+            {/* <h1 className='m-2 font-bold text-2xl text-center text-blue-900'>
+                {categoryName}
+            </h1>
+            <div className='m-2'>
+                <div className='quill-content' dangerouslySetInnerHTML={{ __html: category?.description2 }} />
+            </div>
+            <h1 className="text-3xl font-bold  text-blue-900 mb-6 mt-6 text-center">
+                {categoryName} Products
+            </h1> */}
 
             {category?.subcategories?.length > 0 && (
                 <div>
                     <div className="text-center my-6">
-                        <h2 className="text-2xl text-gray-700 font-bold capitalize">{category?.name} SubCategories</h2>
-                        <div className="w-20 h-1 bg-blue-500 mx-auto mt-2 rounded"></div>
+                        <h2 className="text-2xl text-gray-700 font-bold">{category?.name} SubCategories</h2>
+                        <div className="w-20 h-1 bg-[#13cea1] mx-auto mt-2 rounded"></div>
                     </div>
 
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -156,10 +168,10 @@ export default function CategoriesBasedProduct() {
 
             {paginatedItems?.length > 0 ? (
                 <>
-                    <div className="text-center my-4">
-                        <h2 className="text-2xl text-gray-700 font-bold">Products in {category?.name}</h2>
-                        <div className="w-20 h-1 bg-blue-500 mx-auto mt-2 rounded"></div>
-                    </div>
+                  <div className="text-center my-4">
+                                <h2 className="text-2xl text-gray-700 font-bold">Products in {category?.name}</h2>
+                                <div className="w-20 h-1 bg-[#13cea1] mx-auto mt-2 rounded"></div>
+                            </div>
                     {isLoading ? (
                         <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-6">
                             {[...Array(6)].map((_, idx) => (
@@ -170,11 +182,14 @@ export default function CategoriesBasedProduct() {
                         </div>
                     ) : paginatedItems?.length > 0 ? (
                         <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-6">
-                            {paginatedItems.map((product: any, idx: number) => (
+                            {/* {paginatedItems.map((product: any, idx: number) => ( */}
+                               {paginatedItems
+                                    .filter((product: any) => !product?.subcategory || product?.subcategory === "") // ⛔ subcategory iruntha skip
+                                    .map((product: any, idx: number) => (
                                 <div
                                     key={idx}
                                     className=""
-                                    onClick={() => router.push(`/shop/${(product?.name)}`)}
+                                    onClick={() => router.push(`/shop/${(product?.slug_name)}`)}
                                 >
                                     <ProductCard
                                         image={product?.image_urls[0] || ''}
@@ -182,7 +197,7 @@ export default function CategoriesBasedProduct() {
                                         title={product?.name}
                                         price={product?.price}
                                         onAddToCart={() => alert(`Add to cart: ${product?.name}`)}
-                                        onView={() => router.push(`/shop/${(product.name)}`)}
+                                        onView={() => router.push(`/shop/${(product.slug_name)}`)}
                                         onWishlist={() => alert(`Wishlist: ${product?.name}`)}
                                         product={product}
                                     />
@@ -206,14 +221,7 @@ export default function CategoriesBasedProduct() {
                     )}
                 </>
             )
-                : (
-                    <div className="flex flex-col items-center justify-center py-20 text-center w-full">
-                        <div className="text-6xl mb-3">📭</div>
-                        <p className="text-lg font-semibold text-gray-600">
-                            No Products available
-                        </p>
-                    </div>
-                )}
+                : ''}
 
 
 

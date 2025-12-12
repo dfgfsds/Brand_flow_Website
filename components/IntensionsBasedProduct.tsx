@@ -19,9 +19,7 @@ import ProductCardSkeleton from './ProductCardSkeleton';
 
 export default function IntensionsBasedProduct() {
     const topRef = useRef<HTMLDivElement>(null);
-    // const { name } = useParams() ?? {};
-    const params = useParams();
-    const name = params?.name;
+    const { name } = useParams() ?? {};
     const [getUserId, setUserId] = useState<string | null>(null);
     const [getCartId, setCartId] = useState<string | null>(null);
     const [getUserName, setUserName] = useState<string | null>(null);
@@ -99,14 +97,14 @@ export default function IntensionsBasedProduct() {
                 <ArrowLeft onClick={() => router.back()} className='text-gray-400 cursor-pointer' />
                 <div className="text-md text-gray-400 flex mt-0.5 gap-1">
                     <span>
-                        Home</span><span className='cursor-pointer flex' onClick={() => router.back()}>/ {name}</span>  <span className='text-yellow-500'>/ Shop</span></div>
+                        Home</span><span className='cursor-pointer flex' onClick={() => router.back()}>/ {name}</span>  <span className='text-blue-900'>/ Shop</span></div>
             </div>
             {/* <Image src={intention?.banner_image !== null ? intention?.banner_image : img} alt='banner image' className='w-full h-32 md:h-72 px-2 md:m-2 rounded-md' height={100} width={300} /> */}
 
             <div className='m-2'>
                 <div className='' dangerouslySetInnerHTML={{ __html: intention?.description2 }} />
             </div>
-            <h1 className="text-3xl font-bold  text-yellow-500 mb-6 mt-6 text-center">
+            <h1 className="text-3xl font-bold  text-blue-900 mb-6 mt-6 text-center">
                 {name} Products
             </h1>
             {isLoading ? (

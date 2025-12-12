@@ -17,7 +17,6 @@ import { baseUrl } from "@/api-endpoints/ApiUrls";
 import { useUserReviews } from "@/context/ReviewsUserContext";
 
 function OrderSingleView() {
-    // const params = useParams();
     const params = useParams();
     const id = params?.id;
     const { convertPrice } = useCurrency();
@@ -53,7 +52,7 @@ function OrderSingleView() {
     };
 
     const { ReviewItem } = useUserReviews();
-    // console.log(ReviewItem?.data?.reviews, " ReviewItem");
+    console.log(ReviewItem?.data?.reviews, " ReviewItem");
 
 
     useEffect(() => {
@@ -190,12 +189,12 @@ function OrderSingleView() {
                             <p className="flex items-center gap-2">
                                 <span className="font-semibold">Status:</span>
                                 <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-md font-bold ${data?.data?.status === 'Delivered' ? 'bg-green-100 text-green-800' :
-                                    data?.data?.status === 'Pending' ? 'bg-yellow-100 text-yellow-800' :
+                                    data?.data?.status === 'Pending' ? 'bg-blue-100 text-blue-800' :
                                         data?.data?.status === 'Processing' ? 'bg-blue-50 text-blue-700' :
                                             data?.data?.status === 'Shipped' ? 'bg-indigo-50 text-indigo-700' :
                                                 data?.data?.status === 'Cancelled' ? 'bg-red-50 text-red-700' :
                                                     data?.data?.status === 'Delivered' ? 'bg-green-100 text-green-700' :
-                                                        'bg-red-100 text-yellow-500'
+                                                        'bg-red-100 text-blue-900'
                                     }`}>
                                     {data?.data?.status}
                                 </span>
@@ -269,6 +268,15 @@ function OrderSingleView() {
                                                 width={100}
                                                 height={100}
                                             />
+
+                                            {/* <img
+                                                src={item?.product?.image_urls?.[0]}
+                                                alt="product"
+                                                width={100}
+                                                height={100}
+                                                className="h-24 w-24 object-cover rounded-lg border"
+                                            /> */}
+
                                             <div className="flex flex-col justify-between w-full">
                                                 <div>
                                                     <h4
@@ -307,7 +315,7 @@ function OrderSingleView() {
                                                             key={review.id}
                                                             className="border rounded-lg p-3 bg-gray-50 shadow-sm"
                                                         >
-                                                            <p className="text-yellow-500 font-bold">
+                                                            <p className="text-blue-900 font-bold">
                                                                 ⭐ {review.rating}/5
                                                             </p>
                                                             <p className="text-gray-700">{review.comment}</p>
@@ -398,7 +406,7 @@ function OrderSingleView() {
                                     />
                                     {/* Star Display */}
                                     <svg
-                                        className="w-8 h-8 text-yellow-400"
+                                        className="w-8 h-8 text-blue-400"
                                         fill={
                                             (hover || rating) >= star
                                                 ? "currentColor"
@@ -448,7 +456,7 @@ function OrderSingleView() {
                                 <button
                                     type="button"
                                     onClick={() => imageInputRef.current?.click()}
-                                    className="px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white text-sm rounded-lg shadow flex items-center gap-2"
+                                    className="px-4 py-2 bg-blue-900 hover:bg-blue-600 text-white text-sm rounded-lg shadow flex items-center gap-2"
                                 >
                                     📷 Choose Images
                                 </button>
