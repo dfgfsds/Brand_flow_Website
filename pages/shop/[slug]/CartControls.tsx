@@ -75,7 +75,7 @@ export default function CartControls({
 
             {/* Add to Cart Button */}
             <button
-                className="bg-blue-900 text-white px-5 py-2 rounded hover:bg-blue-800 flex items-center gap-2"
+                className="bg-blue-900 text-white px-5 py-2 rounded hover:bg-red-700 flex items-center gap-2"
                 onClick={() => {
                     if (userId) {
                         handleAddCart(productId);

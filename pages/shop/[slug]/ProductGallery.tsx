@@ -77,8 +77,8 @@ export default function ProductGallery({ images = [], name }: { images: string[]
             <button
               key={idx}
               className={`aspect-square rounded-lg overflow-hidden border-2 ${activeIndex === idx
-                ? 'border-blue-500'
-                : 'border-transparent hover:border-blue-500/50'
+                ? 'border-[#4D8B31]'
+                : 'border-transparent hover:border-[#4D8B31]/50'
                 }`}
               onClick={() => setActiveIndex(idx)}
             >

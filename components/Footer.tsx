@@ -69,35 +69,33 @@ const Footer = () => {
     };
 
     useEffect(() => {
-        if (user?.data?.id) {
-            testimonialGetApi();
-        }
+        testimonialGetApi();
     }, [user?.data?.id]);
 
     return (
         <>
-            {!testimonialData?.length && (
-                <section className="bg-white py-16 px-6 md:px-12 lg:px-20">
-                    <div className="max-w-7xl mx-auto text-center">
-                        <h2 className="text-3xl font-bold text-blue-900 mb-4">What Our Customers Say!</h2>
-                        <p className="text-gray-600 mb-8">
-                            We love to hear from our customers. Share your experience with us!
-                        </p>
 
-                        <button
-                            onClick={() => {
-                                getUserId ?
-                                    setIsModalOpen(true)
-                                    :
-                                    router.push('/login');
-                            }}
-                            className="px-6 py-3 bg-blue-900 text-white font-medium rounded-lg hover:bg-blue-800 transition mb-6"
-                        >
-                            Write a Testimonial
-                        </button>
-                    </div>
-                </section>
-            )}
+            <section className="bg-white py-16 px-6 md:px-12 lg:px-20">
+                <div className="max-w-7xl mx-auto text-center">
+                    <h2 className="text-3xl font-bold text-blue-900 mb-4">What Our Customers Say!</h2>
+                    <p className="text-gray-600 mb-8">
+                        We love to hear from our customers. Share your experience with us!
+                    </p>
+
+                    <button
+                        onClick={() => {
+                            getUserId ?
+                                setIsModalOpen(true)
+                                :
+                                router.push('/login');
+                        }}
+                        className="px-6 py-3 bg-blue-900 text-white font-medium rounded-lg hover:bg-blue-300 transition mb-6"
+                    >
+                        Write a Testimonial
+                    </button>
+                </div>
+            </section>
+
             <footer className="bg-blue-900 text-white px-6 lg:px-20 py-12 text-sm">
                 {/* <footer className="bg-[#222222] text-gray-400 px-6 lg:px-20 py-12 text-sm"> */}
                 {/* Top Grid */}
@@ -126,7 +124,7 @@ const Footer = () => {
                         <ul className="space-y-2">
                             <li><Link href="/aboutUs" className="hover:text-white transition-colors"> Our Story</Link></li>
                             <li><Link href="/blog" className="hover:text-white transition-colors"> Blogs</Link></li>
-                            <li><Link href="/shipping-policy" className="hover:text-white transition-colors">Shipping Policy</Link></li>
+                            {/* <li><Link href="/shipping-policy" className="hover:text-white transition-colors">Shipping Policy</Link></li> */}
                         </ul>
                     </div>
 
@@ -159,19 +157,19 @@ const Footer = () => {
                     <div>
                         <h3 className="font-semibold mb-4 uppercase">Where to Contact Us</h3>
                         <ul className="space-y-2">
-                            {data?.support_email && (
-                                <li>
-                                    <a href={`mailto:${data?.support_email}`} className="text-purple-700">{data?.support_email}</a>
-                                </li>
-                            )}
+                                  {data?.support_email &&(
+                            <li>
+                                <a href="mailto:babukumaraswamy837@gmail.com" className="text-purple-300">{data?.support_email}</a>
+                            </li>
+                                  )}
                             {data?.support_contact && (
                                 <li>
-                                    Ph No: <a href={`tel:${data?.support_contact}`} className="text-purple-700">{data?.support_contact}</a>
+                                    Ph No: <a href="tel:+919342934087" className="text-purple-300">{data?.support_contact}</a>
                                 </li>
                             )}
                             <li>
                                 <span className="block font-medium mt-2">ADDRESS:</span>
-                                B&G<br />
+                                Brand Flow<br />
                                 No1. Nethahi Main Road,<br />
                                 Bibikulam, Madurai,<br />
                                 Tamil Nadu 625002
@@ -219,7 +217,7 @@ const Footer = () => {
 
                 {/* Bottom Bar */}
                 <div className="border-t border-gray-300 pt-6 flex flex-col sm:flex-row justify-between items-center text-xs gap-2">
-                    <p>© 2025 B&G</p>
+                    <p>© 2025 Brand Flow</p>
                     <p>
                         Powered by{' '}
                         <a
@@ -229,7 +227,7 @@ const Footer = () => {
                             className="text-white hover:underline"
                         >
                             {/* FT Digital Solutions (Agency). */}
-                            B&G
+                            Brand Flow
                         </a>
                     </p>
                 </div>

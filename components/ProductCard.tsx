@@ -40,7 +40,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
     const { convertPrice } = useCurrency();
     const router = useRouter();
 
-
+    console.log(product)
     useEffect(() => {
         const storedUserId = localStorage.getItem('userId');
         const storedCartId = localStorage.getItem('cartId');
@@ -70,7 +70,6 @@ const ProductCard: React.FC<ProductCardProps> = ({
 
         }
     }
-
 
     const handleUpdateCart = async (id: any, type: any, qty: any) => {
         try {
@@ -104,8 +103,10 @@ const ProductCard: React.FC<ProductCardProps> = ({
                 queryClient.invalidateQueries(['getProductData'] as InvalidateQueryFilters);
             }
         } catch (error) {
-            setSignInModal(true)
-            // console.log(error)
+            // console.log(error?.response?.data?.non_field_errors?.[0] || 'Something went wrong!');
+            toast.error(error?.response?.data?.non_field_errors?.[0] || 'Something went wrong!');
+            // setSignInModal(true)
+            console.log(error)
         }
     }
     // deleteWishListApi
@@ -124,7 +125,6 @@ const ProductCard: React.FC<ProductCardProps> = ({
 
         }
     }
-
 
     // Calculate discount percentage where discount = MRP and price = selling price
     const getDiscountPercentage = () => {
@@ -145,7 +145,9 @@ const ProductCard: React.FC<ProductCardProps> = ({
 
     return (
         <>
-            {/* <div className="bg-white rounded-xl overflow-hidden shadow-lg relative group transition duration-300 ease-in-out hover:shadow-lg">
+            {/* <div className="bg-white rounded-xl overflow-hidden shadow-lg relative group transition duration-300 ease-in-out hover:shadow-lg"
+                onClick={() => onView()}
+            >
 
                 <div className="relative h-[165px] md:h-[260px] w-full flex items-center justify-center bg-white">
                     {discountBadge && (
@@ -175,6 +177,29 @@ const ProductCard: React.FC<ProductCardProps> = ({
 
                             />
                         )}
+
+                        {image && (
+                            <img
+                                src={image}
+                                alt={title}
+                                width={300}
+                                height={400}
+                                className="object-fill w-full mx-auto transition-opacity duration-500 md:group-hover:opacity-0 rounded-md"
+                            />
+                        )}
+
+
+                        {hoverImage && (
+                            <img
+                                src={hoverImage}
+                                alt={`${title} - hover`}
+                                width={300}
+                                height={400}
+                                className="object-fill w-full mx-auto absolute top-0 left-0 transform translate-x-full md:group-hover:translate-x-0 transition-transform duration-500 ease-in-out rounded-md"
+                            />
+                        )}
+
+
                     </div>
 
                     {product?.cartId ? (
@@ -218,16 +243,29 @@ const ProductCard: React.FC<ProductCardProps> = ({
 
                     {product?.isLike === true ? (
                         <button
-                            onClick={handleDeleteWishList}
-                            className="absolute bottom-1.5 right-4 md:right-1/2 md:opacity-0 md:group-hover:opacity-100 opacity-100 md:group-hover:translate-x-20 md:translate-x-0 w-10 h-10 md:w-12 md:h-12 bg-red-500 text-white border-[3px] border-white rounded-full flex items-center justify-center shadow hover:bg-[#991b1b] hover:text-white transition-all duration-500 z-10"
+                            onClick={(e) => {
+                                if (getUserId) {
+                                    e.stopPropagation();
+                                    handleDeleteWishList();
+                                } else {
+                                    setSignInModal(true);
+                                }
+                            }}
+                            className="absolute bottom-1.5 right-4 md:right-1/2 md:opacity-0 md:group-hover:opacity-100 opacity-100 md:group-hover:translate-x-20 md:translate-x-0 w-10 h-10 md:w-12 md:h-12 bg-red-500 text-white border-[3px] border-white rounded-full flex items-center justify-center shadow hover:bg-[#991b1b] hover:text-white transition-all duration-500 z-9999"
                         >
                             <Heart size={20} />
                         </button>
                     ) : (
                         <button
-                            // onClick={onWishlist}
-                            onClick={handleWishList}
-                            className="absolute bottom-1.5 right-4 md:right-1/2 md:opacity-0 md:group-hover:opacity-100 opacity-100 md:group-hover:translate-x-20 md:translate-x-0 w-10 h-10 md:w-12 md:h-12 bg-gray-200  border-[3px] border-white rounded-full flex items-center justify-center shadow hover:bg-[#991b1b] hover:text-white transition-all duration-500 z-10"
+                            onClick={(e) => {
+                                if (getUserId) {
+                                    e.stopPropagation();
+                                    handleWishList();
+                                } else {
+                                    setSignInModal(true);
+                                }
+                            }}
+                            className="absolute bottom-1.5 right-4 md:right-1/2 md:opacity-0 md:group-hover:opacity-100 opacity-100 md:group-hover:translate-x-20 md:translate-x-0 w-10 h-10 md:w-12 md:h-12 bg-gray-200  border-[3px] border-white rounded-full flex items-center justify-center shadow hover:bg-[#991b1b] hover:text-white transition-all duration-500 z-9999"
                         >
                             <Heart size={20} />
                         </button>
@@ -235,17 +273,21 @@ const ProductCard: React.FC<ProductCardProps> = ({
                 </div>
 
                 <div className="text-center px-6 py-6">
-                    <h3 className="text-gray-800 font-bold text-sm line-clamp-1 text-left">{title}</h3>
+                    <h3 className="text-gray-800 font-bold text-sm line-clamp-1 text-left capitalize">{title}</h3>
                     <div className='flex justify-between'>
                         <p className="text-blue-900 font-bold mt-1">{convertPrice(Number(price))}</p>
-                        {product?.ratings && (
+                        {product?.ratings ? (
                             <div className="flex items-center gap-1 text-blue-900">
-                                <Star size={14} fill="currentColor" />
+                                <Star size={14} fill="currentColor" className='text-blue-900' />
                                 <span className="text-sm font-semibold text-gray-700">{product?.ratings}</span>
                             </div>
+                        ) : (
+                            <Star size={14} fill="currentColor" className='text-blue-900' />
                         )}
                     </div>
                 </div>
+
+
             </div> */}
 
             <div className="bg-white rounded-xl overflow-hidden shadow-lg relative group transition duration-300 ease-in-out hover:shadow-lg"
@@ -354,14 +396,14 @@ const ProductCard: React.FC<ProductCardProps> = ({
                 <div className="text-center px-6 py-6">
                     <h3 className="text-gray-800 font-bold text-sm line-clamp-1 text-left capitalize">{title}</h3>
                     <div className='flex justify-between'>
-                        <p className="text-yellow-500 font-bold mt-1">{convertPrice(Number(price))}</p>
+                        <p className="text-blue-900 font-bold mt-1">{convertPrice(Number(price))}</p>
                         {product?.ratings ? (
-                            <div className="flex items-center gap-1 text-yellow-500">
-                                <Star size={14} fill="currentColor" className='text-yellow-500' />
+                            <div className="flex items-center gap-1 text-blue-900">
+                                <Star size={14} fill="currentColor" className='text-blue-900' />
                                 <span className="text-sm font-semibold text-gray-700">{product?.ratings}</span>
                             </div>
                         ) : (
-                            <Star size={14} fill="currentColor" className='text-yellow-500' />
+                            <Star size={14} fill="currentColor" className='text-blue-900' />
                         )}
                     </div>
                 </div>

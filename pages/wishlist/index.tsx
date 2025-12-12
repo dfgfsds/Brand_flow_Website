@@ -58,7 +58,7 @@ function WishList() {
         <ArrowLeft onClick={() => router.back()} className='text-gray-400 cursor-pointer' />
         <p className="text-md text-gray-400 flex mt-0.5 gap-1">
           <span className='cursor-pointer flex' onClick={() => router.back()} >
-            Back</span> / <span className='text-yellow-500'>Wishlist</span></p>
+            Back</span> / <span className='text-blue-900'>Wishlist</span></p>
 
       </div>
 

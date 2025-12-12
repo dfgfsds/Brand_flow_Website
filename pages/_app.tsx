@@ -26,10 +26,10 @@ export default function App({ Component, pageProps }: AppProps) {
         <>
             {/* ✅ SEO and Favicon */}
             <Head>
-                <title>Brand flow </title>
+                <title>Brand Flow | Premium Beauty & Saloon Products by TKS Babu</title>
                 <meta
                     name="description"
-                    content="Brand flow "
+                    content="Omsritara offers spiritual healing crystals, pendulums & malas to awaken inner peace and positive energy. Free India-wide shipping on all orders."
                 />
                 <link rel="icon" href="/favicon.ico" />
                 <script src="https://checkout.razorpay.com/v1/checkout.js"></script>

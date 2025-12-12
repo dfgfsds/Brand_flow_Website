@@ -39,6 +39,21 @@ export default function CategoriesPage() {
                                     />
                                 )}
 
+                                {/* {category?.image && (
+                                    <img
+                                        src={
+                                            category?.image?.startsWith("http")
+                                                ? category.image
+                                                : `https://ecomapi.ftdigitalsolutions.org${category.image}`
+                                        }
+                                        alt={category?.name || "Category"}
+                                        className="h-full w-full object-cover transition-transform duration-500"
+                                        width="300"
+                                        height="288"
+                                    />
+                                )} */}
+
+
                             </div>
 
                             {/* Overlay */}

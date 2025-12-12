@@ -37,6 +37,15 @@ export default function ShopByIntentionPage() {
                                         height={288}
                                     />
                                 )}
+                                {/* {category?.image && (
+                                    <img
+                                        src={category?.image || 'https://semantic-ui.com/images/wireframe/image.png'}
+                                        alt={category?.name || 'Category'}
+                                        className="h-full w-full object-cover transition-transform duration-500"
+                                        width={300}
+                                        height={288}
+                                    />
+                                )} */}
 
                             </div>
 

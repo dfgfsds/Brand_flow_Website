@@ -52,10 +52,20 @@ export default function CartPage() {
     <div className="bg-white">
       <div className="container mx-auto px-4 py-12">
         <h1 className="text-3xl font-bold mb-8">Your Cart</h1>
-        {cartItem?.length === 0 ? (
+        {cartItem?.data?.length === 0 ? (
+          // <div className="flex flex-col items-center justify-center h-64">
+          //   <ShoppingBag className="h-16 w-16 text-gray-400 mb-4" />
+          //   <p className="text-gray-600">Your cart is empty</p>
+          //   <Link href="/products" className="mt-4 text-[#4D8B31] hover:underline flex">
+          //     Start Shopping 
+          //     <ArrowRight className="ml-2 h-4 w-4 my-auto" />
+
+          //   </Link>
+          // </div>
+
           <div className="flex flex-col items-center justify-center h-max  text-gray-800 animate-fadeIn">
             <div className="text-6xl text-gray-400 animate-float">
-              <ShoppingBag className="h-16 w-16 text-blue-900 mb-4" />
+              <ShoppingBag className="h-16 w-16 text-blue-400 mb-4" />
             </div>
             <h1 className="text-3xl font-bold mt-0 animate-slideInUp">
               Your cart is empty.
@@ -66,7 +76,7 @@ export default function CartPage() {
             </p>
             <Link href="/shop">
               <button
-                className="mt-8 px-6 py-3 font-bold bg-blue-900 text-white rounded-full shadow-md hover:bg-yellow-300 transform transition hover:scale-105 animate-bounce"
+                className="mt-8 px-6 py-3 font-bold bg-blue-900 text-white rounded-full shadow-md hover:bg-blue-300 transform transition hover:scale-105 animate-bounce"
               >
                 Return To Shop
               </button>
@@ -79,7 +89,7 @@ export default function CartPage() {
                 <div className="p-6">
                   <div className="flex justify-between items-center mb-6">
                     <h2 className="text-xl font-semibold">Cart Items {cartItem?.length}</h2>
-                    <Link href="/shop" className="text-blue-500 font-bold hover:underline text-sm flex items-center">
+                    <Link href="/shop" className="text-blue-600 font-bold hover:underline text-sm flex items-center">
                       Continue Shopping
                       <ArrowRight className="ml-1 h-4 w-4" />
                     </Link>

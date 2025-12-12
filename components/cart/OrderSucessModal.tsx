@@ -9,10 +9,10 @@ function OrderSuccessModal() {
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      router.push("/profile"); 
-    }, 4000); 
+      router.push("/profile");
+    }, 4000);
 
-    return () => clearTimeout(timer); 
+    return () => clearTimeout(timer);
   }, [router]);
 
   return (
@@ -25,6 +25,14 @@ function OrderSuccessModal() {
           height={100}
           width={100}
         />
+        {/* <img
+          src="https://cdn-icons-png.flaticon.com/512/845/845646.png"
+          alt="Success"
+          className="w-20 h-20 mx-auto mb-4"
+          width={100}
+          height={100}
+        /> */}
+
         <h2 className="text-2xl font-semibold text-green-600 mb-2">
           Order Placed Successfully!
         </h2>

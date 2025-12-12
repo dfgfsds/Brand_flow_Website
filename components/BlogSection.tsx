@@ -13,12 +13,9 @@ const BlogSection: React.FC<{ blogs: any[] }> = ({ blogs }) => {
     return (
         <section className="py-6 px-4 bg-white">
             <div className="max-w-7xl mx-auto container">
-                {recentBlogs.length > 0 && (
-                    <h2 className="text-3xl font-extrabold text-center mb-10">
-                        Our Latest Blogs
-                    </h2>
-                )}
-
+                <h2 className="text-3xl font-extrabold text-center mb-10">
+                    Our Latest Blogs
+                </h2>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
                     {recentBlogs?.map((post, idx) => {
@@ -41,6 +38,16 @@ const BlogSection: React.FC<{ blogs: any[] }> = ({ blogs }) => {
                                                 fill
                                                 className="object-cover"
                                             />
+                                            // <img
+                                            //     src={
+                                            //         post.banner_url?.startsWith("http")
+                                            //             ? post.banner_url
+                                            //             : ``
+                                            //     }
+                                            //     alt={post.title}
+                                            //     className="object-cover w-full h-full"
+                                            // />
+
                                         )}
 
                                         {/* Date Badge */}

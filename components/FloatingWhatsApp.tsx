@@ -19,7 +19,6 @@ const FloatingWhatsApp: React.FC = () => {
   })
   const floatingCallData = getVendorDeliveryDetailsData?.data?.data?.vendor_site_details?.vendor_floating_icon;
 
-
   useEffect(() => {
     const checkMobile = () => setIsMobile(window.innerWidth < 640);
     checkMobile(); // initial check

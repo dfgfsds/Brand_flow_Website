@@ -27,7 +27,6 @@ interface Product {
     image_urls: string[];
     ratingValue?: number;
     ratingCount?: number;
-    brand_name:string;
 }
 
 interface SingleProductViewProps {
@@ -143,11 +142,11 @@ export default function SingleProductView({
 
     return (
         <>
-            <Head>
+            {/* <Head>
                 <title>{productDetails?.name} | Om Sri Tara</title>
                 <meta name="description" content={productDetails?.description_2 || productDetails?.name} />
                 <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaData) }} />
-            </Head>
+            </Head> */}
 
             <div className="container mx-auto px-4 py-12">
                 <div className="grid md:grid-cols-2 gap-8">
@@ -158,7 +157,7 @@ export default function SingleProductView({
                             {productDetails?.name}
                         </h1>
                         <div className="flex items-center gap-2 text-sm text-gray-500 mb-4">
-                            <div className="mt-4 text-2xl font-bold text-blue-900 py-2 border-gray-200">
+                            <div className="mt-4 text-2xl font-bold text-red-600 py-2 border-gray-200">
                                 {convertPrice(Number(productDetails?.price))}
                             </div>
                             {productDetails?.discount &&
@@ -187,9 +186,9 @@ export default function SingleProductView({
                         />
 
                         <ul className="mt-6 mb-3 space-y-2 text-sm text-gray-700 border-y py-2 border-gray-200">
-                            <li>
-                                <strong>Brand:</strong> {productDetails?.brand_name} 
-                            </li>
+                            {/* <li>
+                                <strong>Brand:</strong> OMSRITARA
+                            </li> */}
                             <li>
                                 <strong>Availability: </strong>
                                 <span
@@ -205,13 +204,15 @@ export default function SingleProductView({
 
                 {/* Related Products */}
                 <div className="mt-5 border-t pt-5">
-                    <h2 className="text-xl font-bold mb-4">Related Products</h2>
+                    {relatedProducts?.length ? (<h2 className="text-xl font-bold mb-4">Related Products</h2>
+
+                    ) : ''}
                     <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-6">
                         {relatedProducts?.map((product, idx) => (
                             <ProductCard
                                 key={idx}
                                 image={product?.image_urls[0] || ""}
-                                hoverImage={product?.image_urls[1] || ""}
+                                hoverImage={product?.image_urls?.[1] || product?.image_urls?.[0]}
                                 title={product?.name}
                                 price={product?.price}
                                 onAddToCart={() => alert(`Add to cart: ${product?.name}`)}
@@ -237,10 +238,10 @@ function slugConvert(name: string) {
 export const getServerSideProps: GetServerSideProps = async (context) => {
     const { slug } = context.params as { slug: string };
 
-    const res: any = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/products/?vendor_id=144`);
+    const res: any = await fetch(`https://test-ecomapi.justvy.in/api/products/?vendor_id=144`);
     const products = await res.json();
 
-    const productDetails = products?.find((p: any) => slugConvert(p.name) === slug) || null;
+    const productDetails = products?.find((p: any) => (p.slug_name) === slug) || null;
 
     if (!productDetails) {
         return { notFound: true };

@@ -40,7 +40,7 @@ export const Pagination = ({ currentPage, totalPages, onPageChange }: Pagination
             <button
                 onClick={() => onPageChange(Math.max(1, currentPage - 1))}
                 disabled={currentPage === 1}
-                className="px-2 py-1 border rounded disabled:opacity-50 text-yellow-500 border-yellow-700"
+                className="px-2 py-1 border rounded disabled:opacity-50 text-blue-900 border-blue-700"
             >
                 &lt;
             </button>
@@ -53,7 +53,7 @@ export const Pagination = ({ currentPage, totalPages, onPageChange }: Pagination
                         <button
                             key={`page-${page}`}
                             onClick={() => onPageChange(Number(page))}
-                            className={`px-3 py-1 border rounded cursor-pointer text-yellow-500 border-yellow-700 font-bold ${page === currentPage ? 'bg-blue-900 hover:bg-yellow-700 !text-white' : ''}`}
+                            className={`px-3 py-1 border rounded cursor-pointer text-blue-900 border-blue-700 font-bold ${page === currentPage ? 'bg-blue-900 hover:bg-blue-700 !text-white' : ''}`}
                         >
                             {page}
                         </button>
@@ -64,7 +64,7 @@ export const Pagination = ({ currentPage, totalPages, onPageChange }: Pagination
             <button
                 onClick={() => onPageChange(Math.min(totalPages, currentPage + 1))}
                 disabled={currentPage === totalPages}
-                className="px-2 py-1 border rounded disabled:opacity-50 text-yellow-500 border-yellow-700"
+                className="px-2 py-1 border rounded disabled:opacity-50 text-blue-900 border-blue-700"
             >
                 &gt;
             </button>
