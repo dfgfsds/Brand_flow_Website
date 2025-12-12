@@ -181,7 +181,7 @@ function RegisterModel({open,handleClose}) {
 
                             <p className="text-sm text-gray-600 text-center">
                                 Already have an account?{' '}
-                                <Link href="/login" className="font-medium text-yellow-500 hover:text-red-700">
+                                <Link href="/login" className="font-medium text-blue-900 hover:text-red-700">
                                     Sign in
                                 </Link>
                             </p>

@@ -9,7 +9,6 @@ import { useCartItem } from "@/context/CartItemContext";
 import { useWishList } from "@/context/WishListContext";
 
 export default function SubCategoryProducts() {
-    // const params = useParams();
     const params = useParams();
     const subId = params?.subId;
     const router = useRouter();
@@ -69,12 +68,12 @@ export default function SubCategoryProducts() {
 
                 <span className="px-2">/</span>
 
-                <h2 className="text-xl md:text-2xl font-bold text-blue-500">{data[0]?.subcategory_name || 'Products'}</h2>
+                <h2 className="text-xl md:text-2xl font-bold text-[#13cea1]">{data[0]?.subcategory_name || 'Products'}</h2>
             </div>
 
             <div className="text-center my-5">
                 <h2 className="text-2xl text-gray-700 font-bold capitalize">{`${subId} Products` || 'Products'}</h2>
-                <div className="w-20 h-1 bg-blue-500 mx-auto mt-2 rounded"></div>
+                <div className="w-20 h-1 bg-[#13cea1] mx-auto mt-2 rounded"></div>
             </div>
             <div className=" mx-auto px-4">
 
@@ -107,7 +106,7 @@ export default function SubCategoryProducts() {
                 {products?.data?.products?.filter((p: any) => p?.is_featured === true)?.length > 0 && (
                 <div className="text-center my-4">
                     <h2 className="text-2xl text-gray-700 font-bold">Featured Products</h2>
-                    <div className="w-20 h-1 bg-blue-500 mx-auto mt-2 rounded"></div>
+                    <div className="w-20 h-1 bg-[#13cea1] mx-auto mt-2 rounded"></div>
                 </div>
                 )}
 

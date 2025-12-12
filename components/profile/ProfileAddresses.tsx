@@ -45,7 +45,7 @@ export default function ProfileAddresses() {
   const handleSelectAddress = async (address: any) => {
     try {
       const updateApi = await patchUserSelectAddressAPi(`user/${userId}/address/${address?.id}`, {
-        updated_by: getUserName,
+        updated_by: getUserName ? getUserName : 'user',
       });
       if (updateApi) {
         queryClient.invalidateQueries(['getAddressData'] as InvalidateQueryFilters);
@@ -60,7 +60,7 @@ export default function ProfileAddresses() {
         <h2 className="text-xl font-semibold">Your Addresses</h2>
         <button
           onClick={() => setOpenMoadl(!openModal)}
-          className="bg-blue-900 hover:bg-red-700 text-white font-bold px-4 py-2 rounded-md flex items-center gap-2"
+          className="bg-blue-900 hover:bg-blue-700 text-white font-bold px-4 py-2 rounded-md flex items-center gap-2"
         >
           <Plus className="w-4 h-4" />
           Add New Address
@@ -178,7 +178,7 @@ export default function ProfileAddresses() {
               <button
                 onClick={confirmDelete}
                 disabled={loading}
-                className="px-4 py-2 bg-blue-900 text-white rounded-md text-sm font-bold hover:bg-red-700 flex items-center gap-2"
+                className="px-4 py-2 bg-blue-900 text-white rounded-md text-sm font-bold hover:bg-blue-700 flex items-center gap-2"
               >
                 Confirm Delete {loading && <Loader className="animate-spin w-4 h-4" />}
               </button>

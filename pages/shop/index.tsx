@@ -84,8 +84,8 @@ export default function Shop() {
         const matchesCategory =
             !selectedCategory || item?.category === selectedCategory;
 
-        const matchesSubcategory =
-            !selectedSubcategory || item?.subcategory === selectedSubcategory;
+                const matchesSubcategory =
+        !selectedSubcategory || item?.subcategory === selectedSubcategory;
 
         const matchesSearch =
             !searchQuery ||
@@ -183,6 +183,23 @@ export default function Shop() {
                 <aside className={`${showFilters ? 'block' : 'hidden'} md:block space-y-6`}>
 
                     {/* Size */}
+                    {/* <div>
+                        <h3 className="font-semibold mb-2">Category</h3>
+                        <div className="space-y-2 text-sm text-gray-600">
+                            {categories?.data?.map((category: any) => (
+                                <label key={category?.id} className="block">
+                                    <input
+                                        type="checkbox"
+                                        className="mr-2"
+                                        checked={selectedCategory === category.id}
+                                        onChange={() => handleCheckboxChange(category.id)}
+                                    />
+                                    {category?.name}
+                                </label>
+                            ))}
+                        </div>
+                    </div> */}
+
                     <div>
                         <h3 className="font-semibold mb-2">Category</h3>
 
@@ -251,7 +268,24 @@ export default function Shop() {
                             </label>
                         </div>
                     </div>
-                
+
+                    {/* <div>
+                        <h3 className="font-semibold mb-2">Intension</h3>
+                        <div className="space-y-2 text-sm text-gray-600">
+                            {intentions?.map((category: any) => (
+                                <label key={category?.name} className="block">
+                                    <input
+                                        type="checkbox"
+                                        className="mr-2"
+                                        checked={selectedIntension === category.name}
+                                        onChange={() => handleCheckboxChangeIntension(category.name)}
+                                    />
+                                    {category?.name}
+                                </label>
+                            ))}
+                        </div>
+                    </div> */}
+
                     {/* Clear Button */}
                     <button className="mt-4 px-4 py-1 bg-black text-white text-sm rounded"
                         onClick={() => {
@@ -311,12 +345,12 @@ export default function Shop() {
                                 >
                                     <ProductCard
                                         image={product?.image_urls[0] || ''}
-                                        hoverImage={product?.image_urls[1] || ''}
+                                        hoverImage={product?.image_urls?.[1] || product?.image_urls?.[0]}
                                         title={product?.name}
                                         price={product?.price}
-                                        onAddToCart={() => alert(`Add to cart: ${product?.name}`)}
+                                        onAddToCart={() => alert(`Add to cart: ${product?.slug_name}`)}
                                         onView={() => router.push(`/shop/${(product?.slug_name)}`)}
-                                        onWishlist={() => alert(`Wishlist: ${product?.name}`)}
+                                        onWishlist={() => alert(`Wishlist: ${product?.slug_name}`)}
                                         product={product}
                                     />
                                 </div>
