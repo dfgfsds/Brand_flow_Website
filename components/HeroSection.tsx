@@ -147,7 +147,9 @@ export default function HeroSection() {
   };
 
   useEffect(() => {
+    if(vendorId){
     bannerGetApi();
+    }
   }, [vendorId]);
 
   // ✅ Handle mobile/web banners
