@@ -165,7 +165,7 @@ export default function ForgotPasswordPage() {
         setErrorMessage("You're not a registered user. Please create an account.");
       }
     } catch (error: any) {
-      console.log(error, "check email error");
+      // console.log(error, "check email error");
 
       setErrorMessage("Failed to send OTP. Please try again.");
     }

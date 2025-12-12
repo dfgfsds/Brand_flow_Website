@@ -55,7 +55,7 @@ const Testimonials = () => {
                 setReviews(reviewsWithStars);
             }
         } catch (error) {
-            console.log('Error fetching testimonials:', error);
+            // console.log('Error fetching testimonials:', error);
         }
     };
 

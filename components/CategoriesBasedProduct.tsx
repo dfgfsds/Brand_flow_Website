@@ -20,7 +20,9 @@ import { slugConvert } from '@/lib/utils';
 
 export default function CategoriesBasedProduct() {
     const topRef = useRef<HTMLDivElement>(null);
-    const { id } = useParams() ?? {};
+    // const { id } = useParams() ?? {};
+    const params = useParams();
+    const id = params?.id;
     const [getUserId, setUserId] = useState<string | null>(null);
     const [getCartId, setCartId] = useState<string | null>(null);
     const [getUserName, setUserName] = useState<string | null>(null);
@@ -65,7 +67,7 @@ export default function CategoriesBasedProduct() {
         (product: any) => product?.category === category?.id
     );
 
-    console.log('Filtered Products:', filteredProducts);
+    // console.log('Filtered Products:', filteredProducts);
     // Keep only products with status === true (robust normalization)
     const activeProducts = filteredProducts?.filter((p: any) => {
         const s = p?.status;

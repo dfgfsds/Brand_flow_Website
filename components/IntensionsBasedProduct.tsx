@@ -19,7 +19,9 @@ import ProductCardSkeleton from './ProductCardSkeleton';
 
 export default function IntensionsBasedProduct() {
     const topRef = useRef<HTMLDivElement>(null);
-    const { name } = useParams() ?? {};
+    // const { name } = useParams() ?? {};
+    const params = useParams();
+    const name = params?.name;
     const [getUserId, setUserId] = useState<string | null>(null);
     const [getCartId, setCartId] = useState<string | null>(null);
     const [getUserName, setUserName] = useState<string | null>(null);
