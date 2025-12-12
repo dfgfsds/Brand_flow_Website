@@ -105,7 +105,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
             }
         } catch (error) {
             setSignInModal(true)
-            console.log(error)
+            // console.log(error)
         }
     }
     // deleteWishListApi

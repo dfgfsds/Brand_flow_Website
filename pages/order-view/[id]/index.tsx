@@ -17,6 +17,7 @@ import { baseUrl } from "@/api-endpoints/ApiUrls";
 import { useUserReviews } from "@/context/ReviewsUserContext";
 
 function OrderSingleView() {
+    // const params = useParams();
     const params = useParams();
     const id = params?.id;
     const { convertPrice } = useCurrency();
@@ -52,7 +53,7 @@ function OrderSingleView() {
     };
 
     const { ReviewItem } = useUserReviews();
-    console.log(ReviewItem?.data?.reviews, " ReviewItem");
+    // console.log(ReviewItem?.data?.reviews, " ReviewItem");
 
 
     useEffect(() => {
