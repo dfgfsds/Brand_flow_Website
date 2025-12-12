@@ -60,7 +60,9 @@ const Testimonials = () => {
     };
 
     useEffect(() => {
+        if (vendorId) {
         reviewsGetApi();
+        }
     }, [vendorId]);
     return (
         <section className="py-12 bg-gray-50">

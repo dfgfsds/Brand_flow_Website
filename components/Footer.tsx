@@ -69,7 +69,9 @@ const Footer = () => {
     };
 
     useEffect(() => {
-        testimonialGetApi();
+        if (user?.data?.id) {
+            testimonialGetApi();
+        }
     }, [user?.data?.id]);
 
     return (
