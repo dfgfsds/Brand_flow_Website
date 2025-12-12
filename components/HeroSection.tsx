@@ -98,7 +98,7 @@
 
 import React, { useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
+// import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import Link from 'next/link';
 import Slider from 'react-slick';
@@ -110,7 +110,7 @@ import axios from 'axios';
 import { useRouter } from 'next/router';
 import Image from 'next/image';
 
-gsap.registerPlugin(ScrollTrigger);
+// gsap.registerPlugin(ScrollTrigger);
 
 export default function HeroSection() {
   const [isMobile, setIsMobile] = useState(false);
