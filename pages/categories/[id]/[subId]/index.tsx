@@ -9,6 +9,7 @@ import { useCartItem } from "@/context/CartItemContext";
 import { useWishList } from "@/context/WishListContext";
 
 export default function SubCategoryProducts() {
+    // const params = useParams();
     const params = useParams();
     const subId = params?.subId;
     const router = useRouter();

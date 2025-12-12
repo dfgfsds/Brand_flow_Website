@@ -25,6 +25,7 @@ import Head from 'next/head';
 
 export default function ProductLandingPage() {
     const router = useRouter();
+    // const params = useParams();
     const params = useParams();
     const slug = params?.slug;
     const { products, isAuthenticated, isLoading }: any = useProducts();
@@ -83,7 +84,7 @@ export default function ProductLandingPage() {
         fetchAddressByPincode();
     }, [pincode, setValue]);
 
-    console.log(slug, "slug");
+    // console.log(slug, "slug");
 
 
     function slugConvert(name: string) {
@@ -94,7 +95,7 @@ export default function ProductLandingPage() {
             .replace(/[^\w-]+/g, '');     // Remove non-word characters except hyphens
     }
     const productDetails = products?.data?.find((item: any) => slugConvert(item.name) === slug);
-console.log(productDetails, "productDetails");
+// console.log(productDetails, "productDetails");
     const handleAddCart = async (id: any, qty: any) => {
         const payload = {
             cart: localStorage.getItem('cartId') ? Number(localStorage.getItem('cartId')) : '',
@@ -112,7 +113,7 @@ console.log(productDetails, "productDetails");
                 queryClient.invalidateQueries(['getProductData'] as InvalidateQueryFilters);
             }
         } catch (error: any) {
-            console.log(error?.response);
+            // console.log(error?.response);
             toast.error(error?.response?.data?.message || 'Something went wrong!')
 
         }
@@ -349,9 +350,9 @@ console.log(productDetails, "productDetails");
                 fetchCartAndDeliveryCharge()
             }
         } catch (error: any) {
-            console.log(error?.response?.data?.error);
+            // console.log(error?.response?.data?.error);
         } finally {
-            console.log("Coupon applied successfully");
+            // console.log("Coupon applied successfully");
         }
     };
 

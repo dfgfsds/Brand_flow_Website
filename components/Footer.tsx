@@ -64,7 +64,7 @@ const Footer = () => {
                 console.warn('Unexpected API response:', res.data);
             }
         } catch (error) {
-            console.log('Error fetching banners:', error);
+            // console.log('Error fetching banners:', error);
         }
     };
 
